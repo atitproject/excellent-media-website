@@ -1,0 +1,855 @@
+<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}
+/* 3D Mosaic Tile / Pixel Fragmentation Transition Styles */
+#hero-slider-container {
+  perspective: 1600px;
+}
+.cube-grid-viewport {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 25;
+  perspective: 1600px;
+  overflow: hidden;
+}
+.cube-tile {
+  position: absolute;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+  transition-property: transform, opacity;
+  transition-timing-function: cubic-bezier(0.2, 0.9, 0.4, 1.1);
+}
+.cube-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  background-size: var(--bg-width) var(--bg-height);
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+.cube-face-front {
+  background-image: var(--bg-front);
+  background-position: var(--bg-pos-x) var(--bg-pos-y);
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.45);
+}
+.cube-face-back {
+  background-image: var(--bg-back);
+  background-position: var(--bg-pos-x) var(--bg-pos-y);
+  transform: rotateY(180deg);
+  box-shadow: inset 0 0 16px rgba(0,0,0,0.45);
+}
+.cube-face::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(234,88,12,0.18) 0%, rgba(14,75,89,0.22) 100%);
+  pointer-events: none;
+}
+.cube-tile.shattering {
+  transform: translateZ(var(--tz, 140px)) rotateX(var(--rx, 65deg)) rotateY(var(--ry, 180deg)) scale(var(--sc, 0.85));
+  opacity: 0;
+}
+
+/* Floating badge keyframes */
+@keyframes floatBadge {
+  0%, 100% {
+    transform: translateY(0px);
+    box-shadow: 0 4px 14px rgba(234, 88, 12, 0.2);
+  }
+  50% {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(234, 88, 12, 0.4);
+  }
+}
+.hero-floating-badge {
+  animation: floatBadge 3.2s ease-in-out infinite;
+}
+
+/* Gradient shimmer for punchy headline highlights */
+@keyframes textShimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.shimmer-text {
+  background-size: 200% auto;
+  animation: textShimmer 4s ease infinite;
+}
+
+/* CTA magnetic glow pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(234, 88, 12, 0.4), 0 8px 18px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(234, 88, 12, 0.75), 0 12px 24px rgba(234, 88, 12, 0.35);
+  }
+}
+.cta-glow-pulse {
+  animation: glowPulse 2.8s ease-in-out infinite;
+}
+
+/* Hero Content Staggered Animations */
+.hero-slide-content {
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+  transform: translateY(0);
+}
+.hero-slide.opacity-0 .hero-slide-content {
+  transform: translateY(24px) scale(0.98);
+  opacity: 0;
+}
+
+/* Progress bar inside active indicator */
+@keyframes activeIndicatorProgress {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+.progress-running {
+  animation: activeIndicatorProgress 5.5s linear infinite;
+}
+
+/* 3D Footer Social Buttons */
+.social-3d-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.social-3d-btn {
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-3d-btn:hover {
+  transform: translateY(-8px) translateZ(20px) rotateX(15deg) rotateY(-12deg) scale(1.15);
+  box-shadow: 0 18px 25px -5px rgba(234, 88, 12, 0.35), 0 8px 12px -3px rgba(10, 51, 61, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+.social-3d-btn svg {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.social-3d-btn:hover svg {
+  transform: translateZ(10px);
+}
+</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{
+  brand:{
+    orange:"#ea580c",
+    "orange-hover":"#c2410c",
+    "orange-light":"#fff7ed",
+    "orange-border":"ffedd5",
+    teal:"#0e4b59",
+    "teal-dark":"#082f38",
+    "teal-light":"#e6f4f7",
+    "teal-border":"#c8e4ea"
+  },
+  surface:"#f8fafc",
+  "surface-card":"#ffffff",
+  "surface-alt":"#f1f5f9",
+  "on-surface":"#0f172a",
+  "on-surface-variant":"#475569"
+},borderRadius:{"DEFAULT":"0.375rem","lg":"0.75rem","xl":"1rem","2xl":"1.25rem","full":"9999px"},fontFamily:{headline:["Plus Jakarta Sans","sans-serif"],body:["Inter","sans-serif"]}}}};</script></head><body class="bg-[#f8fafc] font-body text-slate-900 antialiased selection:bg-orange-500 selection:text-white"><header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 transition-all duration-300"><div class="w-full mx-auto px-6 md:px-12 flex items-center justify-between gap-6 py-3 max-w-[1440px]"><!-- Left: Company Logo --><div class="flex items-center justify-start flex-shrink-0"><a class="flex items-center group py-1" href="#"><img alt="EXCELLENT MEDIA PS Logo" class="h-14 md:h-16 max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQB_glYhyfRPF3Sd4JnlVwPBAC-fCqZmNe4S_hlFOGfEceQMr8qPxV7J8FGAiw7y1nlBzCDUUvXtty4rcOy82vERz9O-rebH3jSMMQx_VvJHuixw0Bq7BioXp_W1S7ySv8rZXlovBRQI4XIsf9SCbb6FQ6H7vECzuyzT1W7nejyd1cmdFtxcsrvOQ7x0dYZk_s0iQnf1QNVwLVC5HAosiOwrgGvnkoX7-lEN5-cyxzpBEJ6_Agz6ZjeyDjkIp_J5Ts035RN-Hg3a_sg"></a></div><!-- Center: Navigation Menu Links --><nav class="hidden md:flex flex-row items-center justify-center gap-8 font-medium text-slate-700 flex-1"><a class="text-sm md:text-[15px] hover:text-[#ea580c] transition-colors py-2 flex items-center gap-1 group" href="#"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#ea580c] transition-all"></span>Home</a><a class="text-sm md:text-[15px] hover:text-[#ea580c] transition-colors py-2 flex items-center gap-1 group" href="#services-pricing"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#ea580c] transition-all"></span>Services</a><a class="text-sm md:text-[15px] hover:text-[#0e4b59] transition-colors py-2 flex items-center gap-1 group" href="#portfolio"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#0e4b59] transition-all"></span>Our Work</a><a class="text-sm md:text-[15px] hover:text-[#ea580c] transition-colors py-2 flex items-center gap-1 group" href="#why-us"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#ea580c] transition-all"></span>Why Us</a></nav><!-- Right: Language & Action CTA --><div class="flex flex-row items-center gap-3 md:gap-4 justify-end flex-shrink-0 flex-nowrap" dir="ltr"><button aria-label="Select Language" class="inline-flex items-center gap-1 px-3 py-2 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-colors flex-shrink-0"><span class="material-symbols-outlined text-[17px] text-[#0e4b59]">language</span><span class="">EN</span><span class="material-symbols-outlined text-[14px] text-slate-400">expand_more</span></button><a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 transition-all text-xs md:text-sm font-bold flex-shrink-0" href="https://wa.me/970599268700" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Let's Talk Now</span></a></div></div></header><main class="w-full bg-[#f8fafc] pt-24 md:pt-28"><div class="flex flex-col w-full">
+<!-- HERO SLIDER SECTION WITH 3D PIXEL/MOSAIC TRANSITION -->
+<section class="relative w-full overflow-hidden bg-[#082f38] min-h-[580px] lg:min-h-[660px] flex items-center select-none group" id="hero-slider-container">
+<!-- Slide 1: Digital Marketing & Growth -->
+<div class="hero-slide absolute inset-0 w-full h-full flex items-center z-10 transition-opacity duration-700 opacity-0 pointer-events-none" id="slide-0"><!-- Background Image --><img alt="Creative digital marketing office workspace with EXCELLENT MEDIA PS branding" class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLXRCUZs1Yslt75_E60p2zgYQk5gR-MW78tlvaDr34g0-zgAhaMm1RHajqLBFkm9y7YlWJNctGCttqMzLFmYhVbYTL-j6brFATXEcMsiGG1w4irPX1S6T5FvIFac_xMeVlMZTmFA_zSaSDo7T5DHpGQj8J4dD7upgmBj0F0WkHZhRxgMoSyzXinbZUJuAAF6E3z9nY9vaugx2T7ngaNxbGSct68S7-H5O_wzNdOG8" style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; transform: translateZ(0);"><!-- Crisp, contrast-enhancing cinematic gradient overlay showing office cleanly --><div class="absolute inset-0 bg-gradient-to-t from-[#082f38] via-[#082f38]/75 to-[#082f38]/50 z-10"></div><div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-orange-500/20 blur-[130px] pointer-events-none z-10"></div><!-- Centered Punchy Content with dynamic motion --><div class="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-20 py-16 flex flex-col items-center justify-center hero-slide-content" id="slide-content-0" style="transform: perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px);"><div class="max-w-3xl flex flex-col items-center text-center space-y-5"><!-- Badge with floating dynamic motion --><div class="hero-floating-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-md"><span class="w-2 h-2 rounded-full bg-[#ea580c] animate-pulse"></span><span class="text-xs font-bold uppercase tracking-wider text-orange-200">Marketing &amp; Growth</span></div><!-- Headline with subtle shimmer --><h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight font-extrabold">Grow Your Brand With <span class="shimmer-text bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-transparent">Smart Marketing</span></h1><!-- Concise Subtitle --><p class="text-base sm:text-lg text-slate-200 max-w-xl mx-auto font-normal">Targeted campaigns and creative content that turn clicks into loyal customers.</p><!-- Centered Buttons with pulsing glow & magnetic float --><div class="flex flex-wrap items-center justify-center gap-3 pt-2"><a class="cta-glow-pulse inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white transition-all duration-300 font-bold text-sm transform hover:-translate-y-1 active:scale-95" href="https://wa.me/970599268700" target="_blank"><span class="">Start Growing Today</span><span class="material-symbols-outlined text-[18px]">rocket_launch</span></a><a class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all font-semibold text-sm transform hover:-translate-y-0.5" href="#services-pricing"><span class="">Explore Services</span><span class="material-symbols-outlined text-[18px]">arrow_downward</span></a></div></div></div></div>
+<!-- Slide 2: Web & Mobile Apps Development -->
+<div class="hero-slide absolute inset-0 w-full h-full flex items-center z-10 transition-opacity duration-700 opacity-100 pointer-events-auto" id="slide-1"><!-- Background Image --><img alt="Modern clean software developer workspace with EXCELLENT MEDIA PS branding" class="hero-bg-img absolute inset-0 w-full h-full object-cover object-center scale-105 transition-transform duration-1000 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDc_rfCofIV0fwthhRVqY2u4FCckgU0fSQC9vjKxEmKSpyKNeDn7oh556v2K61J2Zuyn1PhN3A--dWhrdbG-6m-ZP6vIOe22WgyDGjEuSwkJl8qyuKMqr2r-AcFBCHdTpIZeloTPUUyYyCDIdecxLK4LwZFVbpoxZWuPqzurDqSLp-DBncE1EFUth8TxAyeUCm2KwwcYBTd9rIwoPiks7chAwjXhxFTi3hea7-fJMQ" style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges; transform: translateZ(0);"><!-- Crisp, contrast-enhancing cinematic gradient overlay showing office cleanly --><div class="absolute inset-0 bg-gradient-to-t from-[#082f38] via-[#082f38]/75 to-[#082f38]/50 z-10"></div><div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[350px] rounded-full bg-teal-400/20 blur-[130px] pointer-events-none z-10"></div><!-- Centered Punchy Content with dynamic motion --><div class="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-20 py-16 flex flex-col items-center justify-center hero-slide-content" id="slide-content-1" style="transform: perspective(1000px) rotateY(2.83125deg) rotateX(2.73629deg) translateZ(10px);"><div class="max-w-3xl flex flex-col items-center text-center space-y-5"><!-- Badge with floating dynamic motion --><div class="hero-floating-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-md"><span class="w-2 h-2 rounded-full bg-teal-300 animate-pulse"></span><span class="text-xs font-bold uppercase tracking-wider text-teal-200">Web &amp; Mobile Apps</span></div><!-- Headline with subtle shimmer --><h1 class="font-headline text-3xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight font-extrabold">Websites &amp; Apps <span class="shimmer-text bg-gradient-to-r from-orange-400 via-amber-300 to-teal-300 bg-clip-text text-transparent">Engineered to Scale</span></h1><!-- Concise Subtitle --><p class="text-base sm:text-lg text-slate-200 max-w-xl mx-auto font-normal">Fast, high-converting digital platforms tailored for your company's success.</p><!-- Centered Buttons with pulsing glow & magnetic float --><div class="flex flex-wrap items-center justify-center gap-3 pt-2"><a class="cta-glow-pulse inline-flex items-center gap-2 px-7 py-3 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white transition-all duration-300 font-bold text-sm transform hover:-translate-y-1 active:scale-95" href="https://wa.me/970599268700" target="_blank"><span class="">Build Your Project</span><span class="material-symbols-outlined text-[18px]">laptop_mac</span></a><a class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md border border-white/20 transition-all font-semibold text-sm transform hover:-translate-y-0.5" href="#portfolio"><span class="">View Portfolio</span><span class="material-symbols-outlined text-[18px]">visibility</span></a></div></div></div></div>
+<!-- 3D Small-Square Mosaic Fragmentation Disintegration Viewport -->
+<div class="cube-grid-viewport" id="cube-grid-viewport" style="--bg-width: 1280px; --bg-height: 660px; --bg-front: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuCLXRCUZs1Yslt75_E60p2zgYQk5gR-MW78tlvaDr34g0-zgAhaMm1RHajqLBFkm9y7YlWJNctGCttqMzLFmYhVbYTL-j6brFATXEcMsiGG1w4irPX1S6T5FvIFac_xMeVlMZTmFA_zSaSDo7T5DHpGQj8J4dD7upgmBj0F0WkHZhRxgMoSyzXinbZUJuAAF6E3z9nY9vaugx2T7ngaNxbGSct68S7-H5O_wzNdOG8&quot;); --bg-back: url(&quot;https://lh3.googleusercontent.com/aida-public/AB6AXuDc_rfCofIV0fwthhRVqY2u4FCckgU0fSQC9vjKxEmKSpyKNeDn7oh556v2K61J2Zuyn1PhN3A--dWhrdbG-6m-ZP6vIOe22WgyDGjEuSwkJl8qyuKMqr2r-AcFBCHdTpIZeloTPUUyYyCDIdecxLK4LwZFVbpoxZWuPqzurDqSLp-DBncE1EFUth8TxAyeUCm2KwwcYBTd9rIwoPiks7chAwjXhxFTi3hea7-fJMQ&quot;);"></div>
+<!-- Navigation Arrows -->
+<button aria-label="Previous Slide" class="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-13 md:h-13 rounded-full bg-white/15 hover:bg-[#ea580c] text-white backdrop-blur-md border border-white/20 shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group/btn" id="slider-prev-btn">
+<span class="material-symbols-outlined text-[24px] transition-transform group-hover/btn:-translate-x-0.5">chevron_left</span>
+</button>
+<button aria-label="Next Slide" class="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 w-11 h-11 md:w-13 md:h-13 rounded-full bg-white/15 hover:bg-[#ea580c] text-white backdrop-blur-md border border-white/20 shadow-xl flex items-center justify-center transition-all duration-300 hover:scale-105 active:scale-95 group/btn" id="slider-next-btn">
+<span class="material-symbols-outlined text-[24px] transition-transform group-hover/btn:translate-x-0.5">chevron_right</span>
+</button>
+<!-- Slider Indicators with subtle progress line -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-3 bg-[#082f38]/85 backdrop-blur-lg px-4 py-2 rounded-full border border-teal-500/30 shadow-2xl">
+<button aria-label="Go to Slide 1" class="slider-dot flex items-center gap-2 group/dot py-1 focus:outline-none relative" id="dot-0">
+<div class="dot-bar-container relative overflow-hidden rounded-full h-2 w-3 bg-white/25 transition-all duration-300">
+<div class="dot-bar h-full w-full bg-white/40"></div>
+</div>
+<span class="dot-label hidden sm:inline-block text-[11px] font-bold text-white/70 transition-opacity">01 Marketing</span>
+</button>
+<div class="w-px h-4 bg-white/20"></div>
+<button aria-label="Go to Slide 2" class="slider-dot flex items-center gap-2 group/dot py-1 focus:outline-none relative" id="dot-1">
+<div class="dot-bar-container relative overflow-hidden rounded-full h-2 w-8 md:w-12 bg-white/25 shadow-[0_0_10px_rgba(234,88,12,0.8)] transition-all duration-300">
+<div class="dot-bar h-full w-full bg-[#ea580c] progress-running"></div>
+</div>
+<span class="dot-label hidden sm:inline-block text-[11px] font-bold text-white transition-opacity opacity-100">02 Websites &amp; Apps</span>
+</button>
+</div>
+</section>
+<!-- SERVICES SECTION (Concise & Polished) -->
+<section class="w-full bg-[#f8fafc] py-20 relative overflow-hidden" id="services-pricing">
+<!-- Subtle background glowing accents matching brand teal and orange -->
+<div class="absolute -top-32 right-10 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-32 left-10 w-96 h-96 bg-[#0e4b59]/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
+<div class="flex flex-col items-center text-center max-w-3xl mx-auto mb-14">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200/80 text-[#ea580c] text-xs font-bold uppercase tracking-wider mb-3">
+<span class="material-symbols-outlined text-[15px]">design_services</span>
+      Our Services
+    </div>
+<h2 class="font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Full-Stack Digital Solutions</h2>
+<p class="text-slate-600 text-base mt-2">End-to-end digital services built to elevate your brand and drive measurable sales.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Service 1 -->
+<div class="group relative rounded-2xl bg-white p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-13 h-13 w-12 h-12 rounded-xl bg-orange-50 text-[#ea580c] flex items-center justify-center text-2xl font-bold border border-orange-100 group-hover:scale-105 transition-transform">
+            🖥️
+          </div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Web</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Web Design &amp; Development</h3>
+<p class="text-slate-600 text-sm mt-2 leading-relaxed">Fast, SEO-optimized responsive websites built to turn visitors into paying customers.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[#ea580c] text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">speed</span>
+<span class="">Ultra-Fast &amp; Google Ranked</span>
+</div>
+</div>
+<!-- Service 2 -->
+<div class="group relative rounded-2xl bg-white p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-teal-50 text-[#0e4b59] flex items-center justify-center text-2xl font-bold border border-teal-100 group-hover:scale-105 transition-transform">
+            🛒
+          </div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Commerce</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-slate-900 group-hover:text-[#0e4b59] transition-colors">Online Stores &amp; E-Commerce</h3>
+<p class="text-slate-600 text-sm mt-2 leading-relaxed">Turnkey online stores with seamless multi-currency payments and effortless checkout.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[#0e4b59] text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">shopping_bag</span>
+<span class="">Secure &amp; Instant Checkout</span>
+</div>
+</div>
+<!-- Service 3 -->
+<div class="group relative rounded-2xl bg-white p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-orange-50 text-[#ea580c] flex items-center justify-center text-2xl font-bold border border-orange-100 group-hover:scale-105 transition-transform">
+            📲
+          </div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Mobile</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">iOS &amp; Android Apps</h3>
+<p class="text-slate-600 text-sm mt-2 leading-relaxed">Intuitive, high-performance mobile apps for orders, loyalty, and customer retention.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[#ea580c] text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">smartphone</span>
+<span class="">Native Performance</span>
+</div>
+</div>
+<!-- Service 4 -->
+<div class="group relative rounded-2xl bg-white p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-teal-50 text-[#0e4b59] flex items-center justify-center text-2xl font-bold border border-teal-100 group-hover:scale-105 transition-transform">
+            📱
+          </div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Social</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-slate-900 group-hover:text-[#0e4b59] transition-colors">Social Media Management</h3>
+<p class="text-slate-600 text-sm mt-2 leading-relaxed">Creative designs, viral reels, and strategic daily management across Meta &amp; TikTok.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[#0e4b59] text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">hub</span>
+<span class="">Active Community Engagement</span>
+</div>
+</div>
+<!-- Service 5 -->
+<div class="group relative rounded-2xl bg-white p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-orange-50 text-[#ea580c] flex items-center justify-center text-2xl font-bold border border-orange-100 group-hover:scale-105 transition-transform">
+            📈
+          </div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">Growth</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Digital Ads &amp; Marketing</h3>
+<p class="text-slate-600 text-sm mt-2 leading-relaxed">High-ROI ad campaigns on Google, Meta, and TikTok optimized for maximum conversion.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[#ea580c] text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+<span class="">Measurable ROI &amp; Leads</span>
+</div>
+</div>
+<!-- Service 6 -->
+<div class="group relative rounded-2xl bg-white p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-teal-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1"><div class="">
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-teal-50 text-[#0e4b59] flex items-center justify-center text-2xl font-bold border border-teal-100 group-hover:scale-105 transition-transform">
+            🤖
+          </div>
+<span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">AI Solutions</span>
+</div>
+<h3 class="font-headline text-lg font-bold text-slate-900 group-hover:text-[#0e4b59] transition-colors">AI Solutions</h3>
+<p class="text-slate-600 text-sm mt-2 leading-relaxed">Custom AI agents, intelligent chatbots, and predictive workflows designed to automate customer interactions and scale your business operations.</p>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-[#0e4b59] text-xs font-bold">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+<span class="">Intelligent Automation &amp; AI Agents</span>
+</div></div>
+</div>
+<!-- Custom Request Strip -->
+<div class="mt-12 p-6 md:p-8 rounded-2xl bg-gradient-to-r from-[#082f38] via-[#0e4b59] to-[#082f38] text-white shadow-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-teal-500/20">
+<div class="flex items-center gap-4 text-center md:text-left">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#ea580c] to-[#f97316] text-white flex items-center justify-center flex-shrink-0 shadow-lg shadow-orange-500/30">
+<span class="material-symbols-outlined text-[24px]">contact_support</span>
+</div>
+<div>
+<h4 class="font-headline text-lg font-bold">Need a tailored solution for your company?</h4>
+<p class="text-slate-300 text-xs md:text-sm mt-0.5">Let's discuss your targets and create a customized execution roadmap.</p>
+</div>
+</div>
+<a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#ea580c] hover:bg-[#c2410c] text-white shadow-lg shadow-orange-500/25 transition-all text-xs md:text-sm font-bold flex-shrink-0" href="https://wa.me/970599268700" target="_blank">
+<span class="">Get Free Proposal</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- WHY CHOOSE US SECTION (Concise & Punchy) -->
+<section class="w-full bg-white py-20 border-y border-slate-200/80 relative" id="why-us">
+<div class="w-full max-w-[1440px] mx-auto px-6 md:px-12">
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-14">
+<span class="text-xs font-bold uppercase tracking-wider text-[#0e4b59] px-3.5 py-1 rounded-full bg-teal-50 border border-teal-200 mb-3">
+      Why EXCELLENT MEDIA PS
+    </span>
+<h2 class="font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Built on Trust, Care &amp; Speed</h2>
+<p class="text-slate-600 text-sm md:text-base mt-2">
+      Direct personal support and dependable digital craftsmanship for lasting results.
+    </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-orange-100/70 text-[#ea580c] flex items-center justify-center text-2xl mb-4">
+          🤝
+        </div>
+<h3 class="font-headline text-base font-bold text-slate-900 mb-1.5">Tailored to You</h3>
+<p class="text-slate-600 text-xs md:text-sm leading-relaxed">
+          Custom solutions built specifically for your goals, brand identity, and customers.
+        </p>
+</div>
+<div class="mt-5 pt-3 border-t border-slate-200/60 flex items-center text-[#ea580c] text-xs font-bold gap-1">
+<span class="">Made For Your Business</span>
+<span class="material-symbols-outlined text-[15px]">check_circle</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-300 hover:bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-teal-100/70 text-[#0e4b59] flex items-center justify-center text-2xl mb-4">
+          🎧
+        </div>
+<h3 class="font-headline text-base font-bold text-slate-900 mb-1.5">Friendly Support</h3>
+<p class="text-slate-600 text-xs md:text-sm leading-relaxed">
+          Direct WhatsApp contact and fast ongoing maintenance long after project launch.
+        </p>
+</div>
+<div class="mt-5 pt-3 border-t border-slate-200/60 flex items-center text-[#0e4b59] text-xs font-bold gap-1">
+<span class="">Always By Your Side</span>
+<span class="material-symbols-outlined text-[15px]">support_agent</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-orange-300 hover:bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-orange-100/70 text-[#ea580c] flex items-center justify-center text-2xl mb-4">
+          ⏰
+        </div>
+<h3 class="font-headline text-base font-bold text-slate-900 mb-1.5">On-Time Delivery</h3>
+<p class="text-slate-600 text-xs md:text-sm leading-relaxed">
+          Strict milestone tracking and clear weekly progress updates with zero surprises.
+        </p>
+</div>
+<div class="mt-5 pt-3 border-t border-slate-200/60 flex items-center text-[#ea580c] text-xs font-bold gap-1">
+<span class="">Reliable Deadlines</span>
+<span class="material-symbols-outlined text-[15px]">timelapse</span>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:border-teal-300 hover:bg-white shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 rounded-xl bg-teal-100/70 text-[#0e4b59] flex items-center justify-center text-2xl mb-4">
+          ⭐
+        </div>
+<h3 class="font-headline text-base font-bold text-slate-900 mb-1.5">Top Quality Work</h3>
+<p class="text-slate-600 text-xs md:text-sm leading-relaxed">
+          Polished responsive design, rapid load speeds, and rock-solid modern tech stacks.
+        </p>
+</div>
+<div class="mt-5 pt-3 border-t border-slate-200/60 flex items-center text-[#0e4b59] text-xs font-bold gap-1">
+<span class="">Built to Last</span>
+<span class="material-symbols-outlined text-[15px]">verified</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PORTFOLIO / OUR WORK SECTION (Concise & High Aesthetic) -->
+<section class="w-full bg-[#f8fafc] py-20" id="portfolio">
+<div class="w-full max-w-[1440px] mx-auto px-6 md:px-12">
+<div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
+<span class="text-xs font-bold uppercase tracking-wider text-[#ea580c] px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200 mb-3">
+      Recent Work
+    </span>
+<h2 class="font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Projects Built for Growth</h2>
+<p class="text-slate-600 text-sm md:text-base mt-2">Explore live websites, e-commerce stores, and digital menus crafted for clients.</p>
+</div>
+<!-- Filter tabs -->
+<div class="flex items-center justify-center gap-2 flex-wrap mb-10" id="portfolio-filters">
+<button class="portfolio-btn px-4 py-1.5 text-xs font-semibold rounded-full hover:text-slate-900 transition-all bg-white border border-slate-200 text-slate-600">All Work</button>
+<button class="portfolio-btn px-4 py-1.5 text-xs font-semibold rounded-full hover:text-slate-900 transition-all bg-white border border-slate-200 text-slate-600">E-Commerce</button>
+<button class="portfolio-btn px-4 py-1.5 text-xs font-semibold rounded-full hover:text-slate-900 transition-all bg-white border border-slate-200 text-slate-600">Healthcare &amp; Corporate</button>
+<button class="portfolio-btn active px-4 py-1.5 text-xs font-bold rounded-full transition-all bg-[#0e4b59] text-white shadow-sm">Restaurants &amp; Apps</button>
+</div>
+<!-- Featured Project Card -->
+<div class="mb-10">
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-orange-300 transition-all duration-300 grid grid-cols-1 lg:grid-cols-12">
+<div class="relative h-64 lg:h-auto lg:col-span-5 bg-slate-900 overflow-hidden flex items-center justify-center">
+<img alt="Zuwar Restaurant &amp; Cafe luxury dining app showcase" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHBtznR4fvWOPmUdIbvv-XNn70atmEiVaWbwXw5-06IpGdTjdDNuezs5cmRz31QN-eL4ckEl4EcTat7Fx4IQR1x8ZuimpRbVpUQ1xxl69kfXm3ajuRsLsiB72hhX-9A8JUYyNgoQXfBeUfdkW3WUA8KKRbQsB2oqx-XuGbUp9kz_a7uxwPNbeQZb0Pkp94KvRVDUs8SJ51AafDdYiQMWw4pBAAmBaav7p1ClfMvVNz6q_GMf0QGqt7">
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="text-[11px] px-3 py-1 rounded-full bg-[#ea580c] text-white font-bold uppercase shadow-sm">Featured</span>
+<span class="text-[11px] px-3 py-1 rounded-full bg-white/90 backdrop-blur-sm text-slate-800 font-bold uppercase">Hebron, PS</span>
+</div>
+</div>
+<div class="p-6 lg:p-8 lg:col-span-7 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="text-xs font-bold uppercase tracking-wider text-[#0e4b59]">Dining App &amp; Digital Menu</span>
+<span class="w-1.5 h-1.5 rounded-full bg-slate-300"></span>
+<span class="text-xs font-semibold text-slate-500">تطبيق مطعم وكافيه زوّار</span>
+</div>
+<h3 class="font-headline text-xl md:text-2xl font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Zuwar Restaurant &amp; Cafe Experience</h3>
+<p class="text-slate-600 text-sm leading-relaxed mt-2">
+            High-converting digital menu and instant QR table-ordering system crafted for Hebron's premier dining lounge.
+          </p>
+<div class="flex flex-wrap gap-2 mt-4">
+<span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">QR Menu</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Instant Table Ordering</span>
+<span class="px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 text-xs font-medium">Kitchen Live Dispatch</span>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+<span class="text-xs font-bold text-[#0e4b59] flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-[#ea580c]">stars</span>
+            Live in Hebron • Scan &amp; Order
+          </span>
+<a class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#ea580c] hover:bg-[#c2410c] text-white text-xs font-bold transition-all shadow-sm" href="https://zuwar.ps/menu" rel="noopener noreferrer" target="_blank">
+<span class="">Visit Live App</span>
+<span class="material-symbols-outlined text-[15px]">open_in_new</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- 6 Portfolio Grid Cards (Concise copy) -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Item 1 -->
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-slate-100">
+<img alt="Aleef Pet Store" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZnojDuAHaRN8_lIO9MtqsUceMxnvb6o3Ev5T1ps6HQ4rR_ScMSC9MEy0x8FkLmw2hdk0mmw-AzFto8ltImWWw0mnFuG7DAYj9c3kdb41NO-8HvwGeSLPiY7J4Xo7HoXVgtzDEA4HO53OJ-RRwAT3uw_bUklhx7cvd3dTkRy8ZFk9KL-iuEPzRkzFSECDuXB1IVIIkJoY0kd-ehlL6FiSmpIT90em8gjsKHmG7zrJ1SMovG3A0D_i1">
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-white/90 font-bold uppercase text-[#ea580c]">E-Commerce</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-teal-100 text-[#0e4b59] font-bold">متجر أليف</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Aleef Pet Supplies Store</h3>
+<p class="text-slate-600 text-xs mt-1.5">Saudi pet products store with fast doorstep delivery.</p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-500 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#0e4b59]">local_shipping</span> Fast Delivery</span>
+<a class="text-[#ea580c] hover:underline flex items-center gap-0.5 text-xs font-bold" href="https://aleef.com/" rel="noopener noreferrer" target="_blank">Visit Store <span class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-slate-100">
+<img alt="Tesaat Tech Store" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkcBsWaneGEe_fvcVst_4GIGK5tLKyK6EXUJXVBwNOcQ20_tH7iIDYW2Sr8ZVQhDXQsWVDzEGsn1NRz_9uDqnxS-_M92Z1CGzcaRYUiqHk_JwwhzS88QTixEiDAYcR0Fro0k3CJQzzRDOwgD9xteEEDocA37zPHTFGScfEp0Vi1THyyedb6gBgYVdrzRcH0MKDwEUC3-gYGIbKisnxOkELdDDC6QSlSxgeogGGbRRQtEJ0D9QiTC0w">
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-white/90 font-bold uppercase text-[#ea580c]">E-Commerce</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-orange-100 text-[#ea580c] font-bold">متجر تسعات</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Tesaat Electronics Store</h3>
+<p class="text-slate-600 text-xs mt-1.5">Mobile tech and accessories store with smooth 1-click checkout.</p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-500 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#0e4b59]">verified</span> Secure Checkout</span>
+<a class="text-[#ea580c] hover:underline flex items-center gap-0.5 text-xs font-bold" href="https://www.tesaat.com/" rel="noopener noreferrer" target="_blank">Visit Store <span class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-slate-100">
+<img alt="Scuba Cosmetics and Perfumes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtjsdZ4xHgE62OE02dMDxzfRSF3ZkfFzsi_ugoa4PweX7dM7L5_7H0fKYXlpbJu9s5DVBSlIGWPKojbLi4DglTj7s9qsl9zPigfhwyUjW2gV1P9fEwfAd3RNP9QMY4QQW6pcto0By6D4ahXGXYMlSPdap_LNlHs3hBBEtXjGE2474IXFR3nmxBkvon1CskoF84Ce9oe-TY3-qpYbBwoQdPDuwkAn6CMJ8nPog6ugl_0ouPCzG3ypws">
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-white/90 font-bold uppercase text-[#ea580c]">E-Commerce</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-teal-100 text-[#0e4b59] font-bold">سكوبا كوزمتكس</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Scuba Perfumes &amp; Beauty</h3>
+<p class="text-slate-600 text-xs mt-1.5">High-end luxury perfumes boutique with seamless product filters.</p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-500 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#0e4b59]">diamond</span> Luxury Experience</span>
+<a class="text-[#ea580c] hover:underline flex items-center gap-0.5 text-xs font-bold" href="https://www.scuba-cosmatics.com/" rel="noopener noreferrer" target="_blank">Visit Store <span class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-slate-100">
+<img alt="Dr Tooth Clinics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwP0yoq4XmwoMxOlbc-iJwS9kIpg34KcyBv1NPR6xPP0L_XnZBGtRutsV8JO__D4cXQ24Wx18vyhKsIWJN5u5R6248ep7rOS8FCs7Uqx0JXG5UXe2O490mfuONiCCFfNdWlKXJl4dYygGKoNFT6FVc96i1nUHM7APmRJZnfJiQmBanD6t3mJZkY8jQgNPjWdfxgFXnZiIBXQ8f5Ql_dIxEDS06WLHN77ji4Dv2PgGdbEgI08f4Pyvx">
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-white/90 font-bold uppercase text-[#0e4b59]">Dental</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-teal-100 text-[#0e4b59] font-bold">دكتور توث</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Dr. Tooth Specialized Clinics</h3>
+<p class="text-slate-600 text-xs mt-1.5">Medical clinic platform with instant doctor booking and treatment guides.</p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-500 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#0e4b59]">calendar_month</span> Online Booking</span>
+<a class="text-[#ea580c] hover:underline flex items-center gap-0.5 text-xs font-bold" href="https://drtoothclinics.com/" rel="noopener noreferrer" target="_blank">Visit Site <span class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+<!-- Item 5 -->
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-slate-100">
+<img alt="Kyan Engineering" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZnojDuAHaRN8_lIO9MtqsUceMxnvb6o3Ev5T1ps6HQ4rR_ScMSC9MEy0x8FkLmw2hdk0mmw-AzFto8ltImWWw0mnFuG7DAYj9c3kdb41NO-8HvwGeSLPiY7J4Xo7HoXVgtzDEA4HO53OJ-RRwAT3uw_bUklhx7cvd3dTkRy8ZFk9KL-iuEPzRkzFSECDuXB1IVIIkJoY0kd-ehlL6FiSmpIT90em8gjsKHmG7zrJ1SMovG3A0D_i1">
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-white/90 font-bold uppercase text-[#0e4b59]">Corporate</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-slate-200 text-slate-800 font-bold">شركة كيان</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">Kyan Engineering Services</h3>
+<p class="text-slate-600 text-xs mt-1.5">Corporate portal in Riyadh for industrial contracting inquiries.</p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-500 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#0e4b59]">search_check</span> Google Ranked</span>
+<a class="text-[#ea580c] hover:underline flex items-center gap-0.5 text-xs font-bold" href="https://kyanksa.com/" rel="noopener noreferrer" target="_blank">Visit Site <span class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+<!-- Item 6 -->
+<div class="group rounded-2xl bg-white border border-slate-200 overflow-hidden shadow-sm hover:shadow-lg hover:border-orange-300 transition-all duration-300 flex flex-col justify-between">
+<div>
+<div class="relative h-44 w-full overflow-hidden bg-slate-100">
+<img alt="My Clinic" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkcBsWaneGEe_fvcVst_4GIGK5tLKyK6EXUJXVBwNOcQ20_tH7iIDYW2Sr8ZVQhDXQsWVDzEGsn1NRz_9uDqnxS-_M92Z1CGzcaRYUiqHk_JwwhzS88QTixEiDAYcR0Fro0k3CJQzzRDOwgD9xteEEDocA37zPHTFGScfEp0Vi1THyyedb6gBgYVdrzRcH0MKDwEUC3-gYGIbKisnxOkELdDDC6QSlSxgeogGGbRRQtEJ0D9QiTC0w">
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-white/90 font-bold uppercase text-[#0e4b59]">Medical</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-teal-100 text-[#0e4b59] font-bold">عيادتي</span>
+</div>
+</div>
+<div class="p-5">
+<h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#ea580c] transition-colors">My Clinic Medical Network</h3>
+<p class="text-slate-600 text-xs mt-1.5">Regional clinic system across Riyadh &amp; Jeddah with doctor directory.</p>
+</div>
+</div>
+<div class="p-5 pt-0">
+<div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+<span class="text-[11px] text-slate-500 font-semibold flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-[#0e4b59]">medical_services</span> Riyadh &amp; Jeddah</span>
+<a class="text-[#ea580c] hover:underline flex items-center gap-0.5 text-xs font-bold" href="https://myclinic.com.sa/" rel="noopener noreferrer" target="_blank">Visit Site <span class="material-symbols-outlined text-[14px]">arrow_outward</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CALL TO ACTION SECTION (Deep Petroleum Teal + Orange Accents) -->
+<section class="relative w-full py-20 bg-gradient-to-br from-[#082f38] via-[#0e4b59] to-[#082f38] text-white overflow-hidden" id="contact-us">
+<!-- Glowing orange accent blob -->
+<div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-[#ea580c]/20 blur-[130px] pointer-events-none"></div>
+<div class="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-teal-400/15 blur-[140px] pointer-events-none"></div>
+<div class="w-full max-w-[1440px] mx-auto px-6 md:px-12 relative z-10">
+<div class="max-w-4xl mx-auto flex flex-col items-center text-center">
+<!-- Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-orange-300 text-xs font-bold uppercase tracking-wider mb-4 shadow-md">
+<span class="">🚀</span>
+<span class="">Ready to Launch Your Project?</span>
+</div>
+<!-- Headline (Single Line) -->
+<h2 class="font-headline text-2xl sm:text-4xl md:text-5xl text-white font-extrabold tracking-tight leading-tight mb-4 whitespace-nowrap">
+        Ready to Scale Your Business Online?
+      </h2>
+<!-- Punchy Subtitle -->
+<p class="text-slate-200 text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-8">
+        Get your free digital strategy consultation today. We help you pick the highest-converting solution for your business.
+      </p>
+<!-- WhatsApp CTA Button -->
+<div class="flex items-center justify-center w-full mb-8">
+<a class="inline-flex items-center justify-center gap-3 px-8 py-3.5 bg-[#25D366] hover:bg-[#20ba59] text-white shadow-xl shadow-green-600/30 transition-all duration-300 font-bold text-sm md:text-base transform hover:-translate-y-0.5" href="https://wa.me/970599268700" style="border-radius: 5px !important;" target="_blank">
+<svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg>
+<span class="">Let's Talk Now</span>
+</a>
+</div>
+<!-- Trust Badges in Single Sleek Row -->
+<div class="flex flex-wrap items-center justify-center gap-y-2 gap-x-5 text-xs text-slate-300 pt-4 border-t border-white/10 w-full max-w-xl">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-green-400">check_circle</span>
+<span class="">No Obligation</span>
+</div>
+<span class="text-white/20 hidden sm:inline">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-green-400">verified</span>
+<span class="">100% Free Consultation</span>
+</div>
+<span class="text-white/20 hidden sm:inline">•</span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[17px] text-green-400">schedule</span>
+<span class="">Reply in &lt; 24h</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main>
+<!-- FOOTER -->
+<footer class="w-full bg-white text-slate-600 border-t border-slate-200/80"><div class="w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-14 pb-8"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"><div class="flex flex-col gap-4"><div class="flex items-center gap-2"><img alt="EXCELLENT MEDIA PS Logo" class="h-10 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VPTHa6pB753rlRebLN3SSmfS0blF_yK8oGMXOYWTTorLgoO_xqtBi-gl3uvb5LkLVXeZR_eCJfdk7jdEBr5fO4IE_AHaI_UKDs-kZlXrkpPUztpabIGd0IT9uq0S4hga8A78rJy_RBJvW4Ai_xaE5g8Ek6MWc7dNH9NoHdAcw2paMBCUJs0n3pV9nnv8rxK9zwd46qMWQiZ7sM2DkbroD7ySdAEt84oHc9fVSGjw02ALTVrJr4cFWTtfE"><span class="font-headline text-lg font-bold text-slate-900 tracking-tight">EXCELLENT <span class="text-[#ea580c]">MEDIA PS</span></span></div><p class="text-xs text-slate-600 leading-relaxed max-w-xs">Palestine's modern digital partner for custom web engineering, mobile applications, and high-ROI digital marketing.</p><div class="social-3d-container flex items-center gap-3 pt-2"><a aria-label="Facebook" class="social-3d-btn w-9 h-9 rounded-full bg-slate-50 border border-slate-200 text-slate-600 hover:text-[#ea580c] hover:border-[#ea580c] shadow-sm flex items-center justify-center cursor-pointer" href="https://facebook.com" rel="noopener noreferrer" target="_blank"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg></a><a aria-label="Instagram" class="social-3d-btn w-9 h-9 rounded-full bg-slate-50 border border-slate-200 text-slate-600 hover:text-[#ea580c] hover:border-[#ea580c] shadow-sm flex items-center justify-center cursor-pointer" href="https://instagram.com" rel="noopener noreferrer" target="_blank"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a><a aria-label="LinkedIn" class="social-3d-btn w-9 h-9 rounded-full bg-slate-50 border border-slate-200 text-slate-600 hover:text-[#ea580c] hover:border-[#ea580c] shadow-sm flex items-center justify-center cursor-pointer" href="https://linkedin.com" rel="noopener noreferrer" target="_blank"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg></a><a aria-label="WhatsApp" class="social-3d-btn w-9 h-9 rounded-full bg-slate-50 border border-slate-200 text-slate-600 hover:text-[#ea580c] hover:border-[#ea580c] shadow-sm flex items-center justify-center cursor-pointer" href="https://wa.me/970599268700" rel="noopener noreferrer" target="_blank"><svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"></path></svg></a></div></div><div class="flex flex-col gap-3"><h3 class="font-headline text-xs font-bold text-slate-900 tracking-wider uppercase">Navigation</h3><ul class="flex flex-col gap-2.5 text-xs"><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">chevron_right</span>Home</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#services-pricing"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">chevron_right</span>Our Services</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#portfolio"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">chevron_right</span>Our Work</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#why-us"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">chevron_right</span>Why Choose Us</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#contact-us"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">chevron_right</span>Contact Us</a></li></ul></div><div class="flex flex-col gap-3"><h3 class="font-headline text-xs font-bold text-slate-900 tracking-wider uppercase">Services</h3><ul class="flex flex-col gap-2.5 text-xs"><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#services-pricing"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">language</span>Websites &amp; Stores</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#services-pricing"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">smartphone</span>iOS &amp; Android Apps</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#services-pricing"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">bolt</span>AI Solutions</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#services-pricing"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">hub</span>Social Management</a></li><li class="flex items-center"><a class="text-slate-600 hover:text-[#ea580c] transition-colors flex items-center gap-1.5" href="#services-pricing"><span class="material-symbols-outlined text-[14px] text-[#ea580c]">trending_up</span>Google &amp; Meta Ads</a></li></ul></div><div class="flex flex-col gap-3"><h3 class="font-headline text-xs font-bold text-slate-900 tracking-wider uppercase">Contact Direct</h3><div class="flex flex-col gap-2.5 text-xs text-slate-600"><div class="flex items-start gap-2.5"><span class="material-symbols-outlined text-[17px] text-[#ea580c] mt-0.5">mail</span><div><span class="block text-[11px] text-slate-900 uppercase font-semibold">Email</span><a class="hover:text-[#ea580c] transition-colors text-slate-600" href="mailto:info@excellentmediaps.com">info@excellentmediaps.com</a></div></div><div class="flex items-start gap-2.5"><span class="material-symbols-outlined text-[17px] text-[#ea580c] mt-0.5">call</span><div><span class="block text-[11px] text-slate-900 uppercase font-semibold">Phone / WhatsApp</span><a class="hover:text-[#ea580c] transition-colors text-slate-600" href="tel:+970599268700">+970 599 268 700</a></div></div><div class="flex items-start gap-2.5"><span class="material-symbols-outlined text-[17px] text-[#ea580c] mt-0.5">location_on</span><div><span class="block text-[11px] text-slate-900 uppercase font-semibold">Location</span><span class="text-slate-600">Nablus, Palestine</span></div></div></div></div></div><div class="mt-12 pt-6 border-t border-slate-200/60 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500 text-center md:text-left"><p class="">© 2026 EXCELLENT MEDIA PS. All Rights Reserved.</p><div class="flex items-center gap-3"><span class="text-slate-500">Growing Businesses Online</span><span class="w-1.5 h-1.5 rounded-full bg-[#ea580c]"></span><span class="text-[#ea580c] font-medium">Nablus, Palestine</span></div></div></div></footer>
+<script>
+// High-Density 3D Mosaic Tile Fragmentation Disintegration Slider Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const slides = [
+    {
+      el: document.getElementById('slide-0'),
+      dot: document.getElementById('dot-0'),
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBv1dPgWbHhdycLjcis_A-irILjaRMZYUnKoiOFRRGjqIyyO2aYdIPTlCDxz06wtBr6JBMA8Q-u_G2SUDNuDKI2DtUvLxhWtPiYLDGDr1xvvEf0ZGc-QnUlt54CyKfQDmcggIvNU5-F25DLFYJlT_Cgsg-voxiEFg0hthMFPBDN0JfABgIOrGYj1DtxgMkwUd0CrGtrmLtUIvWPqZvwQglWF0tFXG96QGi3OEwsNzY"
+    },
+    {
+      el: document.getElementById('slide-1'),
+      dot: document.getElementById('dot-1'),
+      image: "https://lh3.googleusercontent.com/aida-public/AB6AXuC3iVEKP_Q-YRTPFKXUw5OHiC3CxWf3KNwQXZvRVGnU5qojk4UcDjCVfN2vPt6BWsjTMW4kL7aczBuAyTc835lN_ekOM8xKShdZsu-05rx4ILnXvF4aPRlOnZ2h0_TfuxgxbpXR3KEPoNhu-3x7pYGI3ZnLgEGH8Uta4coYTs2iinznrXhCgHD5blv3E0Hk2dLe2j9Cwfo_8cPMxvnAMue2jBksxZxhBrLjZ4F2r9M"
+    }
+  ];
+
+  let currentIndex = 1; // Initially Slide 2 is active
+  let isTransitioning = false;
+  let autoplayTimer = null;
+  const container = document.getElementById('hero-slider-container');
+  const cubeViewport = document.getElementById('cube-grid-viewport');
+  const prevBtn = document.getElementById('slider-prev-btn');
+  const nextBtn = document.getElementById('slider-next-btn');
+
+  // Higher grid density for smooth small-tile mosaic effect
+  const COLS = 16;
+  const ROWS = 10;
+
+  function updateDots(newIdx) {
+    slides.forEach((s, idx) => {
+      const containerBar = s.dot.querySelector('.dot-bar-container');
+      const bar = s.dot.querySelector('.dot-bar');
+      const label = s.dot.querySelector('.dot-label');
+      if (idx === newIdx) {
+        if (containerBar) containerBar.className = 'dot-bar-container relative overflow-hidden rounded-full h-2 w-8 md:w-12 bg-white/25 shadow-[0_0_10px_rgba(234,88,12,0.8)] transition-all duration-300';
+        if (bar) {
+          bar.className = 'dot-bar h-full w-full bg-[#ea580c] progress-running';
+        }
+        if (label) {
+          label.className = 'dot-label hidden sm:inline-block text-[11px] font-bold text-white transition-opacity opacity-100';
+        }
+      } else {
+        if (containerBar) containerBar.className = 'dot-bar-container relative overflow-hidden rounded-full h-2 w-3 bg-white/25 transition-all duration-300';
+        if (bar) {
+          bar.className = 'dot-bar h-full w-full bg-white/40';
+        }
+        if (label) {
+          label.className = 'dot-label hidden sm:inline-block text-[11px] font-bold text-white/70 transition-opacity';
+        }
+      }
+    });
+  }
+
+  function run3DDisintegration(fromIdx, toIdx, callback) {
+    const rect = container.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+
+    cubeViewport.innerHTML = '';
+    const tileW = width / COLS;
+    const tileH = height / ROWS;
+
+    const fromImgUrl = slides[fromIdx].image;
+    const toImgUrl = slides[toIdx].image;
+
+    cubeViewport.style.setProperty('--bg-width', `${width}px`);
+    cubeViewport.style.setProperty('--bg-height', `${height}px`);
+    cubeViewport.style.setProperty('--bg-front', `url("${fromImgUrl}")`);
+    cubeViewport.style.setProperty('--bg-back', `url("${toImgUrl}")`);
+
+    const tiles = [];
+
+    for (let r = 0; r < ROWS; r++) {
+      for (let c = 0; c < COLS; c++) {
+        const tile = document.createElement('div');
+        tile.className = 'cube-tile';
+        tile.style.width = `${tileW + 0.5}px`;
+        tile.style.height = `${tileH + 0.5}px`;
+        tile.style.left = `${c * tileW}px`;
+        tile.style.top = `${r * tileH}px`;
+        
+        tile.style.setProperty('--bg-pos-x', `-${c * tileW}px`);
+        tile.style.setProperty('--bg-pos-y', `-${r * tileH}px`);
+
+        // Smooth wave delay spreading radially or diagonally across small squares
+        const distFromCenter = Math.hypot((c - COLS / 2), (r - ROWS / 2));
+        const delay = (distFromCenter * 38) + Math.random() * 45;
+        const duration = 650 + Math.random() * 220;
+
+        const rx = (Math.random() - 0.5) * 140;
+        const ry = 180 + (Math.random() - 0.5) * 60;
+        const tz = 90 + Math.random() * 120;
+        const sc = 0.8 + Math.random() * 0.2;
+
+        tile.style.setProperty('--rx', `${rx}deg`);
+        tile.style.setProperty('--ry', `${ry}deg`);
+        tile.style.setProperty('--tz', `${tz}px`);
+        tile.style.setProperty('--sc', `${sc}`);
+        tile.style.transitionDuration = `${duration}ms`;
+        tile.style.transitionDelay = `${delay}ms`;
+
+        const front = document.createElement('div');
+        front.className = 'cube-face cube-face-front';
+
+        const back = document.createElement('div');
+        back.className = 'cube-face cube-face-back';
+
+        tile.appendChild(front);
+        tile.appendChild(back);
+        cubeViewport.appendChild(tile);
+        tiles.push(tile);
+      }
+    }
+
+    requestAnimationFrame(() => {
+      tiles.forEach(tile => {
+        tile.classList.add('shattering');
+      });
+    });
+
+    setTimeout(() => {
+      cubeViewport.innerHTML = '';
+      if (callback) callback();
+    }, 1050);
+  }
+
+  function goToSlide(targetIdx) {
+    if (isTransitioning || targetIdx === currentIndex) return;
+    isTransitioning = true;
+
+    const fromIdx = currentIndex;
+    const toIdx = targetIdx;
+
+    updateDots(toIdx);
+
+    const incomingSlide = slides[toIdx].el;
+    const outgoingSlide = slides[fromIdx].el;
+
+    incomingSlide.classList.remove('opacity-0', 'pointer-events-none');
+    incomingSlide.classList.add('opacity-100', 'pointer-events-auto');
+
+    run3DDisintegration(fromIdx, toIdx, () => {
+      outgoingSlide.classList.remove('opacity-100', 'pointer-events-auto');
+      outgoingSlide.classList.add('opacity-0', 'pointer-events-none');
+      currentIndex = toIdx;
+      isTransitioning = false;
+    });
+  }
+
+  function nextSlide() {
+    goToSlide((currentIndex + 1) % slides.length);
+  }
+
+  function prevSlide() {
+    goToSlide((currentIndex - 1 + slides.length) % slides.length);
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', () => { resetAutoplay(); nextSlide(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { resetAutoplay(); prevSlide(); });
+
+  slides.forEach((s, idx) => {
+    if (s.dot) {
+      s.dot.addEventListener('click', () => {
+        resetAutoplay();
+        goToSlide(idx);
+      });
+    }
+  });
+
+  function startAutoplay() {
+    autoplayTimer = setInterval(() => {
+      nextSlide();
+    }, 5500);
+  }
+
+  function resetAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    startAutoplay();
+  }
+
+  startAutoplay();
+
+  // Subtle interactive 3D parallax tilt on mouse move over hero section
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const activeContent = document.getElementById(`slide-content-${currentIndex}`);
+    if (activeContent) {
+      activeContent.style.transform = `perspective(1000px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateZ(10px)`;
+    }
+  });
+
+  container.addEventListener('mouseleave', () => {
+    const activeContent = document.getElementById(`slide-content-${currentIndex}`);
+    if (activeContent) {
+      activeContent.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)';
+    }
+  });
+
+  // Portfolio tabs toggle
+  const filterBtns = document.querySelectorAll('.portfolio-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.className = 'portfolio-btn px-4 py-1.5 text-xs font-semibold rounded-full hover:text-slate-900 transition-all bg-white border border-slate-200 text-slate-600';
+      });
+      btn.className = 'portfolio-btn active px-4 py-1.5 text-xs font-bold rounded-full transition-all bg-[#0e4b59] text-white shadow-sm';
+    });
+  });
+});
+</script>
+
+
+</body></html>
