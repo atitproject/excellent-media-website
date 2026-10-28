@@ -147,7 +147,31 @@
   "surface-alt":"#f1f5f9",
   "on-surface":"#0f172a",
   "on-surface-variant":"#475569"
-},borderRadius:{"DEFAULT":"0.375rem","lg":"0.75rem","xl":"1rem","2xl":"1.25rem","full":"9999px"},fontFamily:{headline:["Plus Jakarta Sans","sans-serif"],body:["Inter","sans-serif"]}}}};</script></head><body class="bg-[#f8fafc] font-body text-slate-900 antialiased selection:bg-orange-500 selection:text-white"><header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200/80 transition-all duration-300"><div class="w-full mx-auto px-6 md:px-12 flex items-center justify-between gap-6 py-3 max-w-[1440px]"><!-- Left: Company Logo --><div class="flex items-center justify-start flex-shrink-0"><a class="flex items-center group py-1" href="#"><img alt="EXCELLENT MEDIA PS Logo" class="h-14 md:h-16 max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105" src="logo-excellent.png"></a></div><!-- Center: Navigation Menu Links --><nav class="hidden md:flex flex-row items-center justify-center gap-8 font-medium text-slate-700 flex-1"><a class="text-sm md:text-[15px] hover:text-[#ea580c] transition-colors py-2 flex items-center gap-1 group" href="#"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#ea580c] transition-all"></span>Home</a><a class="text-sm md:text-[15px] hover:text-[#ea580c] transition-colors py-2 flex items-center gap-1 group" href="#services-pricing"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#ea580c] transition-all"></span>Services</a><a class="text-sm md:text-[15px] hover:text-[#0e4b59] transition-colors py-2 flex items-center gap-1 group" href="#portfolio"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#0e4b59] transition-all"></span>Our Work</a><a class="text-sm md:text-[15px] hover:text-[#ea580c] transition-colors py-2 flex items-center gap-1 group" href="#why-us"><span class="w-1.5 h-1.5 rounded-full bg-transparent group-hover:bg-[#ea580c] transition-all"></span>Why Us</a></nav><!-- Right: Language & Action CTA --><div class="flex flex-row items-center gap-3 md:gap-4 justify-end flex-shrink-0 flex-nowrap" dir="ltr"><button aria-label="Select Language" class="inline-flex items-center gap-1 px-3 py-2 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-colors flex-shrink-0"><span class="material-symbols-outlined text-[17px] text-[#0e4b59]">language</span><span class="">EN</span><span class="material-symbols-outlined text-[14px] text-slate-400">expand_more</span></button><a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 transition-all text-xs md:text-sm font-bold flex-shrink-0" href="https://wa.me/970599268700" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Let's Talk Now</span></a></div></div></header><main class="w-full bg-[#f8fafc] pt-24 md:pt-28"><div class="flex flex-col w-full">
+},borderRadius:{"DEFAULT":"0.375rem","lg":"0.75rem","xl":"1rem","2xl":"1.25rem","full":"9999px"},fontFamily:{headline:["Plus Jakarta Sans","sans-serif"],body:["Inter","sans-serif"]}}}};</script><style>
+/* ===== Custom UX enhancements (Excellent Media PS) ===== */
+.nav-link{position:relative;color:#334155;padding:6px 2px;font-weight:500;text-decoration:none;transition:color .3s ease,transform .3s ease;}
+.nav-link::after{content:"";position:absolute;left:50%;bottom:-3px;transform:translateX(-50%);height:2px;width:0;border-radius:9999px;background:linear-gradient(90deg,#ea580c,#f97316);transition:width .35s cubic-bezier(.22,.61,.36,1);}
+.nav-link:hover{color:#ea580c;transform:translateY(-2px);}
+.nav-link:hover::after{width:100%;}
+.nav-link:active{transform:translateY(0);}
+
+/* Scroll reveal */
+.reveal-init{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);}
+.reveal-init.reveal-in{opacity:1;transform:none;}
+
+/* CTA background magic */
+@keyframes cta-float{0%,100%{transform:translate(0,0) scale(1);}33%{transform:translate(28px,-22px) scale(1.08);}66%{transform:translate(-22px,18px) scale(.95);}}
+@keyframes cta-drift{from{background-position:0 0;}to{background-position:60px 60px;}}
+.cta-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(to right,rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,.05) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at 50% 42%,#000 0%,transparent 72%);mask-image:radial-gradient(ellipse at 50% 42%,#000 0%,transparent 72%);}
+.cta-dots{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.10) 1.4px,transparent 1.4px);background-size:30px 30px;-webkit-mask-image:radial-gradient(ellipse at center,#000 0%,transparent 72%);mask-image:radial-gradient(ellipse at center,#000 0%,transparent 72%);opacity:.7;animation:cta-drift 14s linear infinite;}
+.cta-orb{position:absolute;border-radius:9999px;filter:blur(60px);pointer-events:none;will-change:transform;}
+
+@media (prefers-reduced-motion: reduce){
+  .reveal-init{opacity:1 !important;transform:none !important;transition:none !important;}
+  .cta-dots,.cta-orb{animation:none !important;}
+  .nav-link{transition:color .2s ease;}
+}
+</style></head><body class="bg-[#f8fafc] font-body text-slate-900 antialiased selection:bg-orange-500 selection:text-white"><header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300"><div class="w-full mx-auto px-6 md:px-12 flex items-center justify-between gap-6 py-3 max-w-[1440px]"><!-- Left: Company Logo --><div class="flex items-center justify-start flex-shrink-0"><a class="flex items-center group py-1" href="#"><img alt="EXCELLENT MEDIA PS Logo" class="h-14 md:h-16 max-h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105" src="logo-excellent.png"></a></div><!-- Center: Navigation Menu Links --><nav class="hidden md:flex flex-row items-center justify-center gap-8 font-medium text-slate-700 flex-1"><a class="nav-link text-sm md:text-[15px]" href="#">Home</a><a class="nav-link text-sm md:text-[15px]" href="#services-pricing">Services</a><a class="nav-link text-sm md:text-[15px]" href="#portfolio">Our Work</a><a class="nav-link text-sm md:text-[15px]" href="#why-us">Why Us</a></nav><!-- Right: Language & Action CTA --><div class="flex flex-row items-center gap-3 md:gap-4 justify-end flex-shrink-0 flex-nowrap" dir="ltr"><button aria-label="Select Language" class="inline-flex items-center gap-1 px-3 py-2 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-colors flex-shrink-0"><span class="material-symbols-outlined text-[17px] text-[#0e4b59]">language</span><span class="">EN</span><span class="material-symbols-outlined text-[14px] text-slate-400">expand_more</span></button><a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 transition-all text-xs md:text-sm font-bold flex-shrink-0" href="https://wa.me/970599268700" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Let's Talk Now</span></a></div></div></header><main class="w-full bg-[#f8fafc] pt-24 md:pt-28"><div class="flex flex-col w-full">
 <!-- HERO SLIDER SECTION WITH 3D PIXEL/MOSAIC TRANSITION -->
 <section class="relative w-full overflow-hidden bg-[#082f38] min-h-[580px] lg:min-h-[660px] flex items-center select-none group" id="hero-slider-container">
 <!-- Slide 1: Digital Marketing & Growth -->
@@ -589,7 +613,7 @@
 </div>
 </section>
 <!-- CALL TO ACTION SECTION (Deep Petroleum Teal + Orange Accents) -->
-<section class="relative w-full py-20 bg-gradient-to-br from-[#082f38] via-[#0e4b59] to-[#082f38] text-white overflow-hidden" id="contact-us">
+<section class="relative w-full py-20 bg-gradient-to-br from-[#082f38] via-[#0e4b59] to-[#082f38] text-white overflow-hidden" id="contact-us"><div class="cta-grid"></div><div class="cta-dots"></div><div class="cta-orb" style="top:-70px;left:7%;width:260px;height:260px;background:rgba(234,88,12,.28);animation:cta-float 16s ease-in-out infinite;"></div><div class="cta-orb" style="bottom:-90px;right:9%;width:340px;height:340px;background:rgba(45,212,191,.20);animation:cta-float 22s ease-in-out infinite reverse;"></div><div class="cta-orb" style="top:28%;right:34%;width:190px;height:190px;background:rgba(249,115,22,.16);animation:cta-float 13s ease-in-out infinite;"></div>
 <!-- Glowing orange accent blob -->
 <div class="absolute top-0 right-1/4 w-96 h-96 rounded-full bg-[#ea580c]/20 blur-[130px] pointer-events-none"></div>
 <div class="absolute bottom-0 left-1/4 w-96 h-96 rounded-full bg-teal-400/15 blur-[140px] pointer-events-none"></div>
@@ -852,4 +876,47 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 
-</body></html>
+<script>
+(function(){
+  try{
+    if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var roots=[document.querySelector('main'),document.querySelector('footer')].filter(Boolean);
+    if(!roots.length) return;
+    var sel=['h2','h3','[class*="grid-cols"] > *','img','p','.rounded-xl','.rounded-2xl'];
+    var hero=document.getElementById('hero-slider-container');
+    var set=new Set();
+    roots.forEach(function(root){
+      sel.forEach(function(s){
+        root.querySelectorAll(s).forEach(function(el){
+          if(hero&&(el===hero||hero.contains(el))) return;
+          set.add(el);
+        });
+      });
+    });
+    var candSet=set;
+    var targets=[];
+    set.forEach(function(el){
+      var p=el.parentElement, skip=false;
+      while(p){ if(candSet.has(p)){ skip=true; break; } p=p.parentElement; }
+      if(!skip) targets.push(el);
+    });
+    targets.forEach(function(el){ el.classList.add('reveal-init'); });
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var el=e.target, delay=0;
+          if(el.parentElement){
+            var sibs=Array.prototype.filter.call(el.parentElement.children,function(c){return c.classList.contains('reveal-init');});
+            var idx=sibs.indexOf(el);
+            if(idx>0) delay=Math.min(idx*90,450);
+          }
+          el.style.transitionDelay=delay+'ms';
+          el.classList.add('reveal-in');
+          io.unobserve(el);
+        }
+      });
+    },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+    targets.forEach(function(el){ io.observe(el); });
+  }catch(err){}
+})();
+</script></body></html>
