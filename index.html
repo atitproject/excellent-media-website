@@ -924,17 +924,16 @@ document.addEventListener('DOMContentLoaded', () => {
 (function(){
   var bar=document.getElementById('scroll-progress');
   if(!bar) return;
-  var ticking=false;
   function update(){
     var h=document.documentElement, b=document.body;
     var st=h.scrollTop||b.scrollTop;
     var max=(h.scrollHeight - h.clientHeight);
     var p=max>0?Math.min(1,Math.max(0,st/max)):0;
     bar.style.width=(p*100)+'%';
-    ticking=false;
   }
-  window.addEventListener('scroll',function(){ if(!ticking){ requestAnimationFrame(update); ticking=true; } },{passive:true});
+  window.addEventListener('scroll',update,{passive:true});
   window.addEventListener('resize',update);
+  window.addEventListener('load',update);
   update();
 })();
 </script></body></html>
