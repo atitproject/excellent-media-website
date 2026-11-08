@@ -206,9 +206,11 @@ html[dir="rtl"] body{text-align:right;}
 html[dir="rtl"] #wa-float{right:auto;left:20px;}
 @media (max-width:640px){html[dir="rtl"] #wa-float{right:auto;left:16px;}}
 html[dir="rtl"] #lang-menu{right:auto;left:0;}
+/* Flip footer nav chevrons so they point correctly in RTL */
+html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
 @media (min-width:768px){
-  html[dir="rtl"] .md\:items-start{align-items:flex-end;}
-  html[dir="rtl"] .md\:text-left{text-align:right;}
+  html[dir="rtl"] .md\:items-start{align-items:flex-end !important;}
+  html[dir="rtl"] .md\:text-left{text-align:right !important;}
 }
 
 /* Scroll reveal */
@@ -960,7 +962,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Reply in < 24h":{ar:"ردّ خلال أقل من 24 ساعة",he:"מענה תוך פחות מ-24 שעות",fr:"Réponse en < 24h",tr:"24 Saatten Kısa Sürede Yanıt"},
 
     "Palestine's modern digital partner for custom web engineering, mobile applications, and high-ROI digital marketing.":{ar:"شريكك الرقمي الحديث في فلسطين لهندسة المواقع المخصّصة وتطبيقات الجوال والتسويق الرقمي عالي العائد.",he:"השותף הדיגיטלי המודרני של פלסטין להנדסת אתרים מותאמת, אפליקציות מובייל ושיווק דיגיטלי בעל ROI גבוה.",fr:"Le partenaire numérique moderne de la Palestine pour l'ingénierie web sur mesure, les applications mobiles et le marketing digital à fort ROI.",tr:"Özel web mühendisliği, mobil uygulamalar ve yüksek ROI'li dijital pazarlama için Filistin'in modern dijital ortağı."},
-    "Navigation":{ar:"التنقّل",he:"ניווט",fr:"Navigation",tr:"Navigasyon"},
+    "Navigation":{ar:"أقسام الموقع",he:"חלקי האתר",fr:"Sections du Site",tr:"Site Bölümleri"},
     "Our Services ":{ar:"خدماتنا",he:"השירותים שלנו",fr:"Nos Services",tr:"Hizmetlerimiz"},
     "Why Choose Us":{ar:"لماذا تختارنا",he:"למה לבחור בנו",fr:"Pourquoi Nous Choisir",tr:"Neden Bizi Seçmelisiniz"},
     "Websites & Stores":{ar:"مواقع ومتاجر",he:"אתרים וחנויות",fr:"Sites & Boutiques",tr:"Web Siteleri ve Mağazalar"},
