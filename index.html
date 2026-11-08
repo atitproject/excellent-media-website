@@ -195,6 +195,21 @@ button,
 .rounded-full.inline-flex,
 .rounded-full.uppercase{border-radius:0 !important;}
 
+/* ===== Language switcher + RTL support ===== */
+#lang-menu .lang-option{cursor:pointer;}
+#lang-menu .lang-option.active-lang{background:#fff7ed;color:#ea580c;}
+.lang-mobile .lang-option-m{cursor:pointer;}
+.lang-mobile .lang-option-m.active-lang{background:#ea580c;color:#fff;border-color:#ea580c;}
+html[dir="rtl"] body,html[dir="rtl"] .font-headline,html[dir="rtl"] .font-body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;}
+html[dir="rtl"] body{text-align:right;}
+html[dir="rtl"] #wa-float{right:auto;left:20px;}
+@media (max-width:640px){html[dir="rtl"] #wa-float{right:auto;left:16px;}}
+html[dir="rtl"] #lang-menu{right:auto;left:0;}
+@media (min-width:768px){
+  html[dir="rtl"] .md\:items-start{align-items:flex-end;}
+  html[dir="rtl"] .md\:text-left{text-align:right;}
+}
+
 /* Scroll reveal */
 .reveal-init{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);}
 .reveal-init.reveal-in{opacity:1;transform:none;}
@@ -211,7 +226,7 @@ button,
   .reveal-init.reveal-in{opacity:1;transform:none;}
   .cta-dots,.cta-orb{animation:none !important;}
 }
-</style></head><body class="bg-[#f8fafc] font-body text-slate-900 antialiased selection:bg-orange-500 selection:text-white"><div id="scroll-progress"></div><header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300"><div class="w-full mx-auto px-6 md:px-12 flex items-center justify-between gap-6 py-3 max-w-[1440px]"><!-- Left: Company Logo --><div class="md:hidden w-11 flex-shrink-0" aria-hidden="true"></div><div class="flex items-center flex-1 justify-center md:flex-none md:justify-start"><a class="flex items-center group py-1" href="#"><img alt="EXCELLENT MEDIA PS Logo" class="h-20 md:h-[75px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" src="menu-logo.png"></a></div><!-- Center: Navigation Menu Links --><nav class="hidden md:flex flex-row items-center justify-center gap-8 font-medium text-slate-700 flex-1"><a class="nav-link text-sm md:text-[15px]" href="#">Home</a><a class="nav-link text-sm md:text-[15px]" href="#services-pricing">Services</a><a class="nav-link text-sm md:text-[15px]" href="#portfolio">Our Work</a><a class="nav-link text-sm md:text-[15px]" href="#why-us">Why Us</a><a class="nav-link text-sm md:text-[15px]" href="#contact-us">Contact Us</a></nav><!-- Right: Language & Action CTA --><div class="flex flex-row items-center gap-3 md:gap-4 justify-end flex-shrink-0 flex-nowrap"><div class="hidden md:flex flex-row items-center gap-3 md:gap-4" dir="ltr"><button aria-label="Select Language" class="inline-flex items-center gap-1 px-3 py-2 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-colors flex-shrink-0"><span class="material-symbols-outlined text-[17px] text-[#0e4b59]">language</span><span class="">EN</span><span class="material-symbols-outlined text-[14px] text-slate-400">expand_more</span></button><a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 transition-all text-xs md:text-sm font-bold flex-shrink-0" href="https://wa.me/970599268700" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Let's Talk Now</span></a></div><button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="md:hidden inline-flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-colors flex-shrink-0"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button></div></div><div id="mobile-menu" class="md:hidden"><a href="#">Home</a><a href="#services-pricing">Services</a><a href="#portfolio">Our Work</a><a href="#contact-us">Contact Us</a></div></header><main class="w-full bg-[#f8fafc]"><div class="flex flex-col w-full">
+</style></head><body class="bg-[#f8fafc] font-body text-slate-900 antialiased selection:bg-orange-500 selection:text-white"><div id="scroll-progress"></div><header class="relative z-50 bg-white/95 backdrop-blur-md shadow-sm transition-all duration-300"><div class="w-full mx-auto px-6 md:px-12 flex items-center justify-between gap-6 py-3 max-w-[1440px]"><!-- Left: Company Logo --><div class="md:hidden w-11 flex-shrink-0" aria-hidden="true"></div><div class="flex items-center flex-1 justify-center md:flex-none md:justify-start"><a class="flex items-center group py-1" href="#"><img alt="EXCELLENT MEDIA PS Logo" class="h-20 md:h-[75px] w-auto object-contain transition-transform duration-300 group-hover:scale-105" src="menu-logo.png"></a></div><!-- Center: Navigation Menu Links --><nav class="hidden md:flex flex-row items-center justify-center gap-8 font-medium text-slate-700 flex-1"><a class="nav-link text-sm md:text-[15px]" href="#">Home</a><a class="nav-link text-sm md:text-[15px]" href="#services-pricing">Services</a><a class="nav-link text-sm md:text-[15px]" href="#portfolio">Our Work</a><a class="nav-link text-sm md:text-[15px]" href="#why-us">Why Us</a><a class="nav-link text-sm md:text-[15px]" href="#contact-us">Contact Us</a></nav><!-- Right: Language & Action CTA --><div class="flex flex-row items-center gap-3 md:gap-4 justify-end flex-shrink-0 flex-nowrap"><div class="hidden md:flex flex-row items-center gap-3 md:gap-4" dir="ltr"><div class="relative flex-shrink-0" id="lang-switcher"><button aria-label="Select Language" id="lang-btn" class="inline-flex items-center gap-1 px-3 py-2 rounded-full border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-colors flex-shrink-0"><span class="material-symbols-outlined text-[17px] text-[#0e4b59]">language</span><span id="lang-current">EN</span><span class="material-symbols-outlined text-[14px] text-slate-400">expand_more</span></button><div class="hidden absolute right-0 mt-2 w-40 bg-white border border-slate-200 shadow-lg py-1 z-50" id="lang-menu"><button class="lang-option w-full text-left px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" data-lang="en">English</button><button class="lang-option w-full text-right px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" data-lang="ar">العربية</button><button class="lang-option w-full text-right px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" data-lang="he">עברית</button><button class="lang-option w-full text-left px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" data-lang="fr">Français</button><button class="lang-option w-full text-left px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors" data-lang="tr">Türkçe</button></div></div><a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white shadow-md shadow-orange-500/25 hover:shadow-lg hover:shadow-orange-500/35 transition-all text-xs md:text-sm font-bold flex-shrink-0" href="https://wa.me/970599268700" target="_blank"><span class="material-symbols-outlined text-[18px]">chat</span><span class="">Let's Talk Now</span></a></div><button id="menu-toggle" aria-label="Open menu" aria-expanded="false" class="md:hidden inline-flex flex-col items-center justify-center gap-[5px] w-11 h-11 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-colors flex-shrink-0"><span class="bar"></span><span class="bar"></span><span class="bar"></span></button></div></div><div id="mobile-menu" class="md:hidden"><a href="#">Home</a><a href="#services-pricing">Services</a><a href="#portfolio">Our Work</a><a href="#contact-us">Contact Us</a><div class="lang-mobile flex items-center flex-wrap gap-2 px-6 py-4 border-t border-slate-100" dir="ltr"><button class="lang-option-m px-3 py-1.5 text-xs font-bold border border-slate-200 bg-white text-slate-700" data-lang="en">EN</button><button class="lang-option-m px-3 py-1.5 text-xs font-bold border border-slate-200 bg-white text-slate-700" data-lang="ar">ع</button><button class="lang-option-m px-3 py-1.5 text-xs font-bold border border-slate-200 bg-white text-slate-700" data-lang="he">עב</button><button class="lang-option-m px-3 py-1.5 text-xs font-bold border border-slate-200 bg-white text-slate-700" data-lang="fr">FR</button><button class="lang-option-m px-3 py-1.5 text-xs font-bold border border-slate-200 bg-white text-slate-700" data-lang="tr">TR</button></div></div></header><main class="w-full bg-[#f8fafc]"><div class="flex flex-col w-full">
 <!-- HERO SLIDER SECTION WITH 3D PIXEL/MOSAIC TRANSITION -->
 <section class="relative w-full overflow-hidden bg-[#082f38] min-h-[580px] lg:min-h-[660px] flex items-center select-none group" id="hero-slider-container">
 <!-- Slide 1: Digital Marketing & Growth -->
@@ -827,6 +842,184 @@ document.addEventListener('DOMContentLoaded', () => {
   btn.addEventListener('click',function(e){ e.stopPropagation(); var open=menu.classList.toggle('open'); btn.classList.toggle('open',open); btn.setAttribute('aria-expanded',open?'true':'false'); });
   menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
   document.addEventListener('click',function(e){ if(menu.classList.contains('open')&&!menu.contains(e.target)&&!btn.contains(e.target)) close(); });
+})();
+</script>
+<script>
+/* ===== Multi-language (i18n) — EN default, AR/HE (RTL), FR, TR ===== */
+(function(){
+  var DICT = {
+    "Home":{ar:"الرئيسية",he:"בית",fr:"Accueil",tr:"Ana Sayfa"},
+    "Services":{ar:"خدماتنا",he:"שירותים",fr:"Services",tr:"Hizmetler"},
+    "Our Work":{ar:"أعمالنا",he:"העבודות שלנו",fr:"Nos Travaux",tr:"Çalışmalarımız"},
+    "Why Us":{ar:"لماذا نحن",he:"למה אנחנו",fr:"Pourquoi Nous",tr:"Neden Biz"},
+    "Contact Us":{ar:"تواصل معنا",he:"צור קשר",fr:"Contactez-nous",tr:"İletişim"},
+    "Let's Talk Now":{ar:"لنتحدث الآن",he:"בואו נדבר",fr:"Parlons-en",tr:"Hemen Konuşalım"},
+
+    "Marketing & Growth":{ar:"التسويق والنمو",he:"שיווק וצמיחה",fr:"Marketing & Croissance",tr:"Pazarlama ve Büyüme"},
+    "Grow Your Brand With":{ar:"طوّر علامتك التجارية مع ",he:"הצמיחו את המותג שלכם עם ",fr:"Développez votre marque avec un ",tr:"Markanızı büyütün: "},
+    "Smart Marketing":{ar:"تسويق ذكي",he:"שיווק חכם",fr:"Marketing Intelligent",tr:"Akıllı Pazarlama"},
+    "Targeted campaigns and creative content that turn clicks into loyal customers.":{ar:"حملات مستهدفة ومحتوى إبداعي يحوّل النقرات إلى عملاء أوفياء.",he:"קמפיינים ממוקדים ותוכן יצירתי שהופכים קליקים ללקוחות נאמנים.",fr:"Des campagnes ciblées et un contenu créatif qui transforment les clics en clients fidèles.",tr:"Tıklamaları sadık müşterilere dönüştüren hedefli kampanyalar ve yaratıcı içerik."},
+    "Start Growing Today":{ar:"ابدأ النمو اليوم",he:"התחילו לצמוח היום",fr:"Commencez à Croître",tr:"Bugün Büyümeye Başlayın"},
+    "Explore Services":{ar:"استكشف الخدمات",he:"גלו שירותים",fr:"Découvrir les Services",tr:"Hizmetleri Keşfet"},
+
+    "Web & Mobile Apps":{ar:"تطبيقات الويب والجوال",he:"אפליקציות ווב ומובייל",fr:"Applications Web & Mobiles",tr:"Web ve Mobil Uygulamalar"},
+    "Websites & Apps":{ar:"مواقع وتطبيقات ",he:"אתרים ואפליקציות ",fr:"Sites & Applications ",tr:"Web Siteleri ve Uygulamalar "},
+    "Engineered to Scale":{ar:"مصمّمة للتوسّع",he:"שנבנו לצמיחה",fr:"Conçus pour Évoluer",tr:"Ölçeklenmek İçin Tasarlandı"},
+    "Fast, high-converting digital platforms tailored for your company's success.":{ar:"منصّات رقمية سريعة وعالية التحويل مصمّمة خصيصاً لنجاح شركتك.",he:"פלטפורמות דיגיטליות מהירות ובעלות המרה גבוהה, מותאמות להצלחת החברה שלכם.",fr:"Des plateformes numériques rapides et performantes, conçues pour la réussite de votre entreprise.",tr:"Şirketinizin başarısı için tasarlanmış hızlı ve yüksek dönüşümlü dijital platformlar."},
+    "Build Your Project":{ar:"ابنِ مشروعك",he:"בנו את הפרויקט שלכם",fr:"Créer Votre Projet",tr:"Projenizi Oluşturun"},
+    "View Portfolio":{ar:"شاهد أعمالنا",he:"צפו בתיק העבודות",fr:"Voir le Portfolio",tr:"Portföyü Görüntüle"},
+
+    "01 Marketing":{ar:"01 تسويق",he:"01 שיווק",fr:"01 Marketing",tr:"01 Pazarlama"},
+    "02 Websites & Apps":{ar:"02 مواقع وتطبيقات",he:"02 אתרים ואפליקציות",fr:"02 Sites & Apps",tr:"02 Web ve Uygulama"},
+
+    "Our Services":{ar:"خدماتنا",he:"השירותים שלנו",fr:"Nos Services",tr:"Hizmetlerimiz"},
+    "Full-Stack Digital Solutions":{ar:"حلول رقمية متكاملة",he:"פתרונות דיגיטליים מקצה לקצה",fr:"Solutions Numériques Complètes",tr:"Uçtan Uca Dijital Çözümler"},
+    "End-to-end digital services built to elevate your brand and drive measurable sales.":{ar:"خدمات رقمية متكاملة تُصمّم لتعزيز علامتك التجارية وتحقيق مبيعات قابلة للقياس.",he:"שירותים דיגיטליים מקצה לקצה שנועדו לקדם את המותג שלכם ולהגדיל מכירות מדידות.",fr:"Des services numériques de bout en bout conçus pour valoriser votre marque et générer des ventes mesurables.",tr:"Markanızı yükseltmek ve ölçülebilir satışlar sağlamak için uçtan uca dijital hizmetler."},
+    "Web":{ar:"ويب",he:"ווב",fr:"Web",tr:"Web"},
+    "Web Design & Development":{ar:"تصميم وتطوير المواقع",he:"עיצוב ופיתוח אתרים",fr:"Conception & Développement Web",tr:"Web Tasarım ve Geliştirme"},
+    "Fast, SEO-optimized responsive websites built to turn visitors into paying customers.":{ar:"مواقع سريعة ومتجاوبة ومُحسّنة لمحركات البحث لتحويل الزوّار إلى عملاء يدفعون.",he:"אתרים מהירים, רספונסיביים ומותאמי SEO שהופכים מבקרים ללקוחות משלמים.",fr:"Des sites rapides, responsives et optimisés SEO pour transformer les visiteurs en clients.",tr:"Ziyaretçileri ödeme yapan müşterilere dönüştüren hızlı, SEO uyumlu ve duyarlı web siteleri."},
+    "Ultra-Fast & Google Ranked":{ar:"سريع جداً ومُصنّف على جوجل",he:"מהיר במיוחד ומדורג בגוגל",fr:"Ultra-Rapide & Référencé Google",tr:"Ultra Hızlı ve Google'da Üst Sırada"},
+    "Commerce":{ar:"تجارة",he:"מסחר",fr:"Commerce",tr:"Ticaret"},
+    "Online Stores & E-Commerce":{ar:"المتاجر الإلكترونية",he:"חנויות אונליין ומסחר אלקטרוני",fr:"Boutiques en Ligne & E-Commerce",tr:"Online Mağazalar ve E-Ticaret"},
+    "Turnkey online stores with seamless multi-currency payments and effortless checkout.":{ar:"متاجر إلكترونية جاهزة بالكامل مع مدفوعات متعددة العملات وإتمام شراء سلس.",he:"חנויות אונליין מוכנות לשימוש עם תשלומים רב-מטבעיים וקופה חלקה.",fr:"Des boutiques en ligne clés en main avec paiements multidevises et un paiement fluide.",tr:"Çoklu para birimi ödemeleri ve kolay ödeme ile anahtar teslim online mağazalar."},
+    "Secure & Instant Checkout":{ar:"دفع آمن وفوري",he:"תשלום מאובטח ומיידי",fr:"Paiement Sécurisé & Instantané",tr:"Güvenli ve Anında Ödeme"},
+    "Mobile":{ar:"جوال",he:"מובייל",fr:"Mobile",tr:"Mobil"},
+    "iOS & Android Apps":{ar:"تطبيقات iOS و Android",he:"אפליקציות iOS ו-Android",fr:"Applications iOS & Android",tr:"iOS ve Android Uygulamaları"},
+    "Intuitive, high-performance mobile apps for orders, loyalty, and customer retention.":{ar:"تطبيقات جوال سهلة وعالية الأداء للطلبات والولاء والحفاظ على العملاء.",he:"אפליקציות מובייל אינטואיטיביות ובעלות ביצועים גבוהים להזמנות, נאמנות ושימור לקוחות.",fr:"Des applications mobiles intuitives et performantes pour les commandes, la fidélité et la rétention.",tr:"Siparişler, sadakat ve müşteri tutma için sezgisel, yüksek performanslı mobil uygulamalar."},
+    "Native Performance":{ar:"أداء أصلي",he:"ביצועים נייטיב",fr:"Performance Native",tr:"Yerel Performans"},
+    "Social":{ar:"سوشيال",he:"סושיאל",fr:"Social",tr:"Sosyal"},
+    "Social Media Management":{ar:"إدارة وسائل التواصل",he:"ניהול מדיה חברתית",fr:"Gestion des Réseaux Sociaux",tr:"Sosyal Medya Yönetimi"},
+    "Creative designs, viral reels, and strategic daily management across Meta & TikTok.":{ar:"تصاميم إبداعية وريلز منتشرة وإدارة يومية استراتيجية عبر Meta و TikTok.",he:"עיצובים יצירתיים, רילסים ויראליים וניהול יומי אסטרטגי ב-Meta ו-TikTok.",fr:"Designs créatifs, reels viraux et gestion quotidienne stratégique sur Meta & TikTok.",tr:"Meta ve TikTok'ta yaratıcı tasarımlar, viral reels ve stratejik günlük yönetim."},
+    "Active Community Engagement":{ar:"تفاعل مجتمعي نشِط",he:"מעורבות קהילה פעילה",fr:"Engagement Actif de la Communauté",tr:"Aktif Topluluk Etkileşimi"},
+    "Growth":{ar:"نمو",he:"צמיחה",fr:"Croissance",tr:"Büyüme"},
+    "Digital Ads & Marketing":{ar:"الإعلانات والتسويق الرقمي",he:"פרסום ושיווק דיגיטלי",fr:"Publicité & Marketing Digital",tr:"Dijital Reklam ve Pazarlama"},
+    "High-ROI ad campaigns on Google, Meta, and TikTok optimized for maximum conversion.":{ar:"حملات إعلانية عالية العائد على Google و Meta و TikTok مُحسّنة لأقصى تحويل.",he:"קמפיינים פרסומיים בעלי ROI גבוה ב-Google, Meta ו-TikTok, ממוטבים להמרה מקסימלית.",fr:"Des campagnes publicitaires à fort ROI sur Google, Meta et TikTok, optimisées pour un maximum de conversions.",tr:"Google, Meta ve TikTok'ta maksimum dönüşüm için optimize edilmiş yüksek ROI'li reklam kampanyaları."},
+    "Measurable ROI & Leads":{ar:"عائد وعملاء محتملون قابلون للقياس",he:"ROI ולידים מדידים",fr:"ROI & Prospects Mesurables",tr:"Ölçülebilir ROI ve Potansiyel Müşteriler"},
+    "AI Solutions":{ar:"حلول الذكاء الاصطناعي",he:"פתרונות בינה מלאכותית",fr:"Solutions IA",tr:"Yapay Zeka Çözümleri"},
+    "Custom AI agents, intelligent chatbots, and predictive workflows designed to automate customer interactions and scale your business operations.":{ar:"وكلاء ذكاء اصطناعي مخصّصون وروبوتات محادثة ذكية وتدفقات عمل تنبؤية لأتمتة تفاعلات العملاء وتوسيع عملياتك.",he:"סוכני AI מותאמים, צ'אטבוטים חכמים ותהליכי עבודה חזויים שנועדו להפוך אינטראקציות עם לקוחות לאוטומטיות ולהגדיל את הפעילות העסקית.",fr:"Des agents IA sur mesure, des chatbots intelligents et des flux prédictifs pour automatiser les interactions clients et développer vos opérations.",tr:"Müşteri etkileşimlerini otomatikleştirmek ve iş operasyonlarınızı büyütmek için özel yapay zeka ajanları, akıllı sohbet botları ve öngörücü iş akışları."},
+    "Intelligent Automation & AI Agents":{ar:"أتمتة ذكية ووكلاء ذكاء اصطناعي",he:"אוטומציה חכמה וסוכני AI",fr:"Automatisation Intelligente & Agents IA",tr:"Akıllı Otomasyon ve Yapay Zeka Ajanları"},
+
+    "Need a tailored solution for your company?":{ar:"هل تحتاج حلاً مخصّصاً لشركتك؟",he:"זקוקים לפתרון מותאם לחברה שלכם?",fr:"Besoin d'une solution sur mesure pour votre entreprise ?",tr:"Şirketiniz için özel bir çözüme mi ihtiyacınız var?"},
+    "Let's discuss your targets and create a customized execution roadmap.":{ar:"لنناقش أهدافك ونضع خارطة طريق تنفيذية مخصّصة.",he:"בואו נדון ביעדים שלכם וניצור מפת דרכים מותאמת לביצוע.",fr:"Discutons de vos objectifs et créons une feuille de route sur mesure.",tr:"Hedeflerinizi konuşalım ve size özel bir uygulama yol haritası oluşturalım."},
+    "Get Free Proposal":{ar:"احصل على عرض مجاني",he:"קבלו הצעה חינם",fr:"Obtenir un Devis Gratuit",tr:"Ücretsiz Teklif Alın"},
+
+    "Why EXCELLENT MEDIA PS":{ar:"لماذا EXCELLENT MEDIA PS",he:"למה EXCELLENT MEDIA PS",fr:"Pourquoi EXCELLENT MEDIA PS",tr:"Neden EXCELLENT MEDIA PS"},
+    "Built on Trust, Care & Speed":{ar:"مبنيّ على الثقة والاهتمام والسرعة",he:"בנוי על אמון, אכפתיות ומהירות",fr:"Bâti sur la Confiance, le Soin & la Rapidité",tr:"Güven, Özen ve Hız Üzerine Kurulu"},
+    "Direct personal support and dependable digital craftsmanship for lasting results.":{ar:"دعم شخصي مباشر وحِرفية رقمية موثوقة لنتائج تدوم.",he:"תמיכה אישית ישירה ומקצועיות דיגיטלית אמינה לתוצאות מתמשכות.",fr:"Un accompagnement personnel direct et un savoir-faire numérique fiable pour des résultats durables.",tr:"Kalıcı sonuçlar için doğrudan kişisel destek ve güvenilir dijital işçilik."},
+    "Tailored to You":{ar:"مُصمّم لك",he:"מותאם לכם",fr:"Sur Mesure pour Vous",tr:"Size Özel"},
+    "Custom solutions built specifically for your goals, brand identity, and customers.":{ar:"حلول مخصّصة مبنية خصيصاً لأهدافك وهويتك التجارية وعملائك.",he:"פתרונות מותאמים אישית שנבנו במיוחד למטרות, לזהות המותג וללקוחות שלכם.",fr:"Des solutions sur mesure conçues pour vos objectifs, votre identité de marque et vos clients.",tr:"Hedefleriniz, marka kimliğiniz ve müşterileriniz için özel olarak oluşturulmuş çözümler."},
+    "Made For Your Business":{ar:"مصنوع لأعمالك",he:"נבנה לעסק שלכם",fr:"Conçu pour Votre Entreprise",tr:"İşiniz İçin Üretildi"},
+    "Friendly Support":{ar:"دعم ودود",he:"תמיכה ידידותית",fr:"Support Convivial",tr:"Dostça Destek"},
+    "Direct WhatsApp contact and fast ongoing maintenance long after project launch.":{ar:"تواصل مباشر عبر واتساب وصيانة مستمرة وسريعة لفترة طويلة بعد إطلاق المشروع.",he:"קשר ישיר בוואטסאפ ותחזוקה שוטפת ומהירה הרבה אחרי השקת הפרויקט.",fr:"Un contact WhatsApp direct et une maintenance rapide bien après le lancement du projet.",tr:"Proje lansmanından çok sonra bile doğrudan WhatsApp iletişimi ve hızlı sürekli bakım."},
+    "Always By Your Side":{ar:"دائماً بجانبك",he:"תמיד לצידכם",fr:"Toujours à Vos Côtés",tr:"Her Zaman Yanınızda"},
+    "On-Time Delivery":{ar:"تسليم في الوقت المحدد",he:"מסירה בזמן",fr:"Livraison à Temps",tr:"Zamanında Teslim"},
+    "Strict milestone tracking and clear weekly progress updates with zero surprises.":{ar:"متابعة دقيقة للمراحل وتحديثات أسبوعية واضحة للتقدّم دون أي مفاجآت.",he:"מעקב קפדני אחר אבני דרך ועדכוני התקדמות שבועיים ברורים ללא הפתעות.",fr:"Un suivi rigoureux des étapes et des rapports hebdomadaires clairs, sans surprises.",tr:"Sıkı kilometre taşı takibi ve sürprizsiz, net haftalık ilerleme güncellemeleri."},
+    "Reliable Deadlines":{ar:"مواعيد نهائية موثوقة",he:"עמידה בלוחות זמנים",fr:"Délais Fiables",tr:"Güvenilir Teslim Tarihleri"},
+    "Top Quality Work":{ar:"عمل بأعلى جودة",he:"עבודה באיכות גבוהה",fr:"Travail de Haute Qualité",tr:"Üstün Kaliteli İş"},
+    "Polished responsive design, rapid load speeds, and rock-solid modern tech stacks.":{ar:"تصميم متجاوب متقَن وسرعات تحميل فائقة وتقنيات حديثة متينة.",he:"עיצוב רספונסיבי מלוטש, מהירויות טעינה גבוהות וטכנולוגיות מודרניות יציבות.",fr:"Un design responsive soigné, des temps de chargement rapides et des technologies modernes solides.",tr:"Cilalı duyarlı tasarım, hızlı yükleme süreleri ve sağlam modern teknolojiler."},
+    "Built to Last":{ar:"مصمّم ليدوم",he:"בנוי להחזיק מעמד",fr:"Conçu pour Durer",tr:"Kalıcı Olması İçin Üretildi"},
+
+    "Recent Work":{ar:"أعمال حديثة",he:"עבודות אחרונות",fr:"Travaux Récents",tr:"Son Çalışmalar"},
+    "Projects Built for Growth":{ar:"مشاريع مبنية للنمو",he:"פרויקטים שנבנו לצמיחה",fr:"Des Projets Conçus pour la Croissance",tr:"Büyüme İçin İnşa Edilmiş Projeler"},
+    "Explore live websites, e-commerce stores, and digital menus crafted for clients.":{ar:"استكشف مواقع حيّة ومتاجر إلكترونية وقوائم رقمية صُمّمت للعملاء.",he:"גלו אתרים חיים, חנויות אונליין ותפריטים דיגיטליים שנבנו ללקוחות.",fr:"Découvrez des sites en ligne, des boutiques e-commerce et des menus numériques créés pour nos clients.",tr:"Müşteriler için hazırlanmış canlı web siteleri, e-ticaret mağazaları ve dijital menüleri keşfedin."},
+    "All Work":{ar:"كل الأعمال",he:"הכל",fr:"Tout",tr:"Tümü"},
+    "E-Commerce":{ar:"تجارة إلكترونية",he:"מסחר אלקטרוני",fr:"E-Commerce",tr:"E-Ticaret"},
+    "Healthcare & Corporate":{ar:"الرعاية الصحية والشركات",he:"בריאות ועסקים",fr:"Santé & Entreprises",tr:"Sağlık ve Kurumsal"},
+    "Restaurants & Apps":{ar:"المطاعم والتطبيقات",he:"מסעדות ואפליקציות",fr:"Restaurants & Applications",tr:"Restoranlar ve Uygulamalar"},
+    "Featured":{ar:"مميّز",he:"מומלץ",fr:"À la Une",tr:"Öne Çıkan"},
+    "Hebron, PS":{ar:"الخليل، فلسطين",he:"חברון, פלסטין",fr:"Hébron, Palestine",tr:"El Halil, Filistin"},
+    "Dining App & Digital Menu":{ar:"تطبيق مطاعم وقائمة رقمية",he:"אפליקציית מסעדה ותפריט דיגיטלי",fr:"Appli de Restaurant & Menu Numérique",tr:"Restoran Uygulaması ve Dijital Menü"},
+    "High-converting digital menu and instant QR table-ordering system crafted for Hebron's premier dining lounge.":{ar:"قائمة رقمية عالية التحويل ونظام طلب فوري عبر QR على الطاولة لأرقى صالة طعام في الخليل.",he:"תפריט דיגיטלי בעל המרה גבוהה ומערכת הזמנה מיידית בשולחן באמצעות QR, שנבנו ללאונג' היוקרתי בחברון.",fr:"Un menu numérique performant et un système de commande à table par QR, conçus pour le salon gastronomique de référence à Hébron.",tr:"El Halil'in önde gelen restoran salonu için hazırlanmış yüksek dönüşümlü dijital menü ve anında QR masa sipariş sistemi."},
+    "QR Menu":{ar:"قائمة QR",he:"תפריט QR",fr:"Menu QR",tr:"QR Menü"},
+    "Instant Table Ordering":{ar:"طلب فوري من الطاولة",he:"הזמנה מיידית בשולחן",fr:"Commande Instantanée à Table",tr:"Anında Masa Siparişi"},
+    "Kitchen Live Dispatch":{ar:"إرسال مباشر للمطبخ",he:"שיגור חי למטבח",fr:"Envoi en Direct en Cuisine",tr:"Mutfağa Canlı Gönderim"},
+    "Live • Scan & Order":{ar:"مباشر • امسح واطلب",he:"חי • סרקו והזמינו",fr:"En Direct • Scanner & Commander",tr:"Canlı • Tara ve Sipariş Ver"},
+    "Visit Live App":{ar:"زيارة التطبيق",he:"לאפליקציה החיה",fr:"Voir l'Application",tr:"Uygulamayı Gör"},
+    "Saudi pet products store with fast doorstep delivery.":{ar:"متجر منتجات حيوانات أليفة سعودي مع توصيل سريع حتى الباب.",he:"חנות מוצרים לחיות מחמד בסעודיה עם משלוח מהיר עד הבית.",fr:"Boutique saoudienne d'articles pour animaux avec livraison rapide à domicile.",tr:"Kapıya hızlı teslimatlı Suudi evcil hayvan ürünleri mağazası."},
+    "Fast Delivery":{ar:"توصيل سريع",he:"משלוח מהיר",fr:"Livraison Rapide",tr:"Hızlı Teslimat"},
+    "Visit Store":{ar:"زيارة المتجر",he:"לחנות",fr:"Voir la Boutique",tr:"Mağazayı Gör"},
+    "High-end luxury perfumes boutique with seamless product filters.":{ar:"بوتيك عطور فاخرة راقية مع فلاتر منتجات سلسة.",he:"בוטיק בשמים יוקרתי עם סינון מוצרים חלק.",fr:"Boutique de parfums de luxe avec des filtres produits fluides.",tr:"Sorunsuz ürün filtreleriyle üst düzey lüks parfüm butiği."},
+    "Luxury Experience":{ar:"تجربة فاخرة",he:"חוויה יוקרתית",fr:"Expérience de Luxe",tr:"Lüks Deneyim"},
+    "Medical clinic platform with instant doctor booking and treatment guides.":{ar:"منصّة عيادة طبية مع حجز فوري للأطباء وأدلة علاجية.",he:"פלטפורמת מרפאה עם הזמנת רופא מיידית ומדריכי טיפול.",fr:"Plateforme de clinique avec prise de rendez-vous instantanée et guides de traitement.",tr:"Anında doktor randevusu ve tedavi rehberleriyle tıbbi klinik platformu."},
+    "Online Booking":{ar:"حجز إلكتروني",he:"הזמנה אונליין",fr:"Réservation en Ligne",tr:"Online Randevu"},
+    "Visit Site":{ar:"زيارة الموقع",he:"לאתר",fr:"Voir le Site",tr:"Siteyi Gör"},
+    "Corporate portal in Riyadh for industrial contracting inquiries.":{ar:"بوابة شركات في الرياض لاستفسارات المقاولات الصناعية.",he:"פורטל ארגוני ברייאד לפניות בנושא קבלנות תעשייתית.",fr:"Portail d'entreprise à Riyad pour les demandes de contrats industriels.",tr:"Riyad'da endüstriyel taahhüt talepleri için kurumsal portal."},
+    "Google Ranked":{ar:"مُصنّف على جوجل",he:"מדורג בגוגל",fr:"Référencé Google",tr:"Google'da Üst Sırada"},
+    "Regional clinic system across Riyadh & Jeddah with doctor directory.":{ar:"نظام عيادات إقليمي في الرياض وجدة مع دليل أطباء.",he:"מערכת מרפאות אזורית ברייאד וג'דה עם מדריך רופאים.",fr:"Système de cliniques régionales à Riyad et Djeddah avec annuaire de médecins.",tr:"Riyad ve Cidde'de doktor rehberiyle bölgesel klinik sistemi."},
+    "Riyadh & Jeddah":{ar:"الرياض وجدة",he:"רייאד וג'דה",fr:"Riyad & Djeddah",tr:"Riyad ve Cidde"},
+    "Dental":{ar:"أسنان",he:"שיניים",fr:"Dentaire",tr:"Diş"},
+    "Corporate":{ar:"شركات",he:"ארגוני",fr:"Entreprise",tr:"Kurumsal"},
+    "Medical":{ar:"طبّي",he:"רפואי",fr:"Médical",tr:"Tıbbi"},
+
+    "Ready to Launch Your Project?":{ar:"جاهز لإطلاق مشروعك؟",he:"מוכנים להשיק את הפרויקט שלכם?",fr:"Prêt à Lancer Votre Projet ?",tr:"Projenizi Başlatmaya Hazır mısınız?"},
+    "Ready to Scale Your Business Online?":{ar:"جاهز لتوسيع أعمالك عبر الإنترنت؟",he:"מוכנים להגדיל את העסק שלכם אונליין?",fr:"Prêt à Développer Votre Entreprise en Ligne ?",tr:"İşinizi Online Büyütmeye Hazır mısınız?"},
+    "Get your free digital strategy consultation today. We help you pick the highest-converting solution for your business.":{ar:"احصل على استشارة استراتيجية رقمية مجانية اليوم. نساعدك في اختيار الحل الأعلى تحويلاً لأعمالك.",he:"קבלו ייעוץ אסטרטגיה דיגיטלית חינם היום. נעזור לכם לבחור את הפתרון בעל ההמרה הגבוהה ביותר לעסק.",fr:"Obtenez dès aujourd'hui votre consultation stratégique numérique gratuite. Nous vous aidons à choisir la solution la plus performante pour votre entreprise.",tr:"Bugün ücretsiz dijital strateji danışmanlığınızı alın. İşiniz için en yüksek dönüşümlü çözümü seçmenize yardımcı oluyoruz."},
+    "No Obligation":{ar:"دون أي التزام",he:"ללא התחייבות",fr:"Sans Engagement",tr:"Yükümlülük Yok"},
+    "100% Free Consultation":{ar:"استشارة مجانية 100%",he:"ייעוץ חינם 100%",fr:"Consultation 100% Gratuite",tr:"%100 Ücretsiz Danışmanlık"},
+    "Reply in < 24h":{ar:"ردّ خلال أقل من 24 ساعة",he:"מענה תוך פחות מ-24 שעות",fr:"Réponse en < 24h",tr:"24 Saatten Kısa Sürede Yanıt"},
+
+    "Palestine's modern digital partner for custom web engineering, mobile applications, and high-ROI digital marketing.":{ar:"شريكك الرقمي الحديث في فلسطين لهندسة المواقع المخصّصة وتطبيقات الجوال والتسويق الرقمي عالي العائد.",he:"השותף הדיגיטלי המודרני של פלסטין להנדסת אתרים מותאמת, אפליקציות מובייל ושיווק דיגיטלי בעל ROI גבוה.",fr:"Le partenaire numérique moderne de la Palestine pour l'ingénierie web sur mesure, les applications mobiles et le marketing digital à fort ROI.",tr:"Özel web mühendisliği, mobil uygulamalar ve yüksek ROI'li dijital pazarlama için Filistin'in modern dijital ortağı."},
+    "Navigation":{ar:"التنقّل",he:"ניווט",fr:"Navigation",tr:"Navigasyon"},
+    "Our Services ":{ar:"خدماتنا",he:"השירותים שלנו",fr:"Nos Services",tr:"Hizmetlerimiz"},
+    "Why Choose Us":{ar:"لماذا تختارنا",he:"למה לבחור בנו",fr:"Pourquoi Nous Choisir",tr:"Neden Bizi Seçmelisiniz"},
+    "Websites & Stores":{ar:"مواقع ومتاجر",he:"אתרים וחנויות",fr:"Sites & Boutiques",tr:"Web Siteleri ve Mağazalar"},
+    "Social Management":{ar:"إدارة السوشيال",he:"ניהול סושיאל",fr:"Gestion Sociale",tr:"Sosyal Medya Yönetimi"},
+    "Google & Meta Ads":{ar:"إعلانات Google و Meta",he:"פרסום ב-Google ו-Meta",fr:"Publicités Google & Meta",tr:"Google ve Meta Reklamları"},
+    "Contact Direct":{ar:"تواصل مباشر",he:"יצירת קשר ישיר",fr:"Contact Direct",tr:"Doğrudan İletişim"},
+    "Email":{ar:"البريد الإلكتروني",he:"אימייל",fr:"E-mail",tr:"E-posta"},
+    "Phone / WhatsApp":{ar:"هاتف / واتساب",he:"טלפון / וואטסאפ",fr:"Téléphone / WhatsApp",tr:"Telefon / WhatsApp"},
+    "Location":{ar:"الموقع",he:"מיקום",fr:"Emplacement",tr:"Konum"},
+    "Qalqilya, Palestine":{ar:"قلقيلية، فلسطين",he:"קלקיליה, פלסטין",fr:"Qalqilya, Palestine",tr:"Kalkilya, Filistin"},
+    "© 2026 EXCELLENT MEDIA PS. All Rights Reserved.":{ar:"© 2026 EXCELLENT MEDIA PS. جميع الحقوق محفوظة.",he:"© 2026 EXCELLENT MEDIA PS. כל הזכויות שמורות.",fr:"© 2026 EXCELLENT MEDIA PS. Tous droits réservés.",tr:"© 2026 EXCELLENT MEDIA PS. Tüm Hakları Saklıdır."},
+    "Growing Businesses Online":{ar:"ننمّي الأعمال عبر الإنترنت",he:"מצמיחים עסקים אונליין",fr:"Faire Croître les Entreprises en Ligne",tr:"İşletmeleri Online Büyütüyoruz"}
+  };
+
+  var LANGS=['en','ar','he','fr','tr'];
+  var CODES={en:'EN',ar:'AR',he:'HE',fr:'FR',tr:'TR'};
+
+  // Capture translatable text nodes once (original = English)
+  var nodes=[];
+  var walker=document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+    acceptNode:function(n){
+      var t=n.nodeValue; if(!t||!t.trim()) return NodeFilter.FILTER_REJECT;
+      var p=n.parentNode; if(!p) return NodeFilter.FILTER_REJECT;
+      var tag=p.nodeName;
+      if(tag==='SCRIPT'||tag==='STYLE'||tag==='NOSCRIPT') return NodeFilter.FILTER_REJECT;
+      if(p.classList && p.classList.contains('material-symbols-outlined')) return NodeFilter.FILTER_REJECT;
+      if(p.closest && p.closest('#lang-menu, .lang-mobile, #lang-btn')) return NodeFilter.FILTER_REJECT;
+      return DICT.hasOwnProperty(t.trim()) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+    }
+  });
+  while(walker.nextNode()){ var n=walker.currentNode; nodes.push({node:n, en:n.nodeValue, key:n.nodeValue.trim()}); }
+
+  function applyLang(lang){
+    if(LANGS.indexOf(lang)<0) lang='en';
+    var rtl=(lang==='ar'||lang==='he');
+    document.documentElement.setAttribute('lang',lang);
+    document.documentElement.setAttribute('dir', rtl?'rtl':'ltr');
+    nodes.forEach(function(it){
+      if(lang==='en'){ it.node.nodeValue=it.en; return; }
+      var entry=DICT[it.key]; var tr=entry&&entry[lang];
+      it.node.nodeValue=(tr!=null?tr:it.en);
+    });
+    var cur=document.getElementById('lang-current'); if(cur) cur.textContent=CODES[lang];
+    document.querySelectorAll('.lang-option').forEach(function(b){ b.classList.toggle('active-lang', b.getAttribute('data-lang')===lang); });
+    document.querySelectorAll('.lang-option-m').forEach(function(b){ b.classList.toggle('active-lang', b.getAttribute('data-lang')===lang); });
+    try{ localStorage.setItem('siteLang',lang); }catch(e){}
+  }
+
+  // Dropdown behaviour
+  var lb=document.getElementById('lang-btn'), lm=document.getElementById('lang-menu');
+  if(lb&&lm){
+    lb.addEventListener('click',function(e){ e.stopPropagation(); lm.classList.toggle('hidden'); });
+    document.addEventListener('click',function(e){ if(!lm.contains(e.target)&&!lb.contains(e.target)) lm.classList.add('hidden'); });
+  }
+  document.querySelectorAll('.lang-option').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang')); if(lm) lm.classList.add('hidden'); }); });
+  document.querySelectorAll('.lang-option-m').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang')); }); });
+
+  // Init: saved choice, else English
+  var saved='en'; try{ saved=localStorage.getItem('siteLang')||'en'; }catch(e){}
+  applyLang(saved);
 })();
 </script>
 </body></html>
