@@ -212,6 +212,12 @@ html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
   html[dir="rtl"] .md\:items-start{align-items:flex-start !important;}
   html[dir="rtl"] .md\:text-left{text-align:right !important;}
 }
+/* Arabic: keep these lines on one line on large screens */
+@media (min-width:1024px){
+  html[lang="ar"] #contact-us p{max-width:none;white-space:nowrap;}
+  html[lang="ar"] #why-us .max-w-2xl{max-width:none;}
+  html[lang="ar"] #why-us h2{white-space:nowrap;}
+}
 
 /* Scroll reveal */
 .reveal-init{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);}
