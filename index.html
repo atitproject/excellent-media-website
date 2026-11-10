@@ -212,11 +212,14 @@ html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
   html[dir="rtl"] .md\:items-start{align-items:flex-start !important;}
   html[dir="rtl"] .md\:text-left{text-align:right !important;}
 }
-/* Arabic: keep these lines on one line on large screens */
+/* Keep selected headings/subtitles on one line on large screens */
 @media (min-width:1024px){
-  html[lang="ar"] #contact-us p{max-width:none;white-space:nowrap;}
-  html[lang="ar"] #why-us .max-w-2xl{max-width:none;}
-  html[lang="ar"] #why-us h2{white-space:nowrap;}
+  html[lang="ar"] #why-us .max-w-2xl,html[lang="ar"] #portfolio .max-w-2xl,html[lang="ar"] #contact-us .max-w-4xl{max-width:none;}
+  html[lang="ar"] #why-us h2,html[lang="ar"] #portfolio .max-w-2xl p,html[lang="ar"] #contact-us h2,html[lang="ar"] #contact-us p{max-width:none;white-space:nowrap;}
+}
+@media (min-width:1280px){
+  #why-us .max-w-2xl,#portfolio .max-w-2xl,#contact-us .max-w-4xl{max-width:none;}
+  #why-us h2,#portfolio .max-w-2xl p,#contact-us h2{white-space:nowrap;}
 }
 
 /* Hand-drawn brush accent under section headings */
@@ -915,7 +918,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Get Free Proposal":{en:"Book Your Consultation",ar:"احجز استشارتك الآن",he:"קבעו את הייעוץ שלכם",fr:"Réservez Votre Consultation",tr:"Danışmanlığınızı Ayırtın"},
 
     "Why EXCELLENT MEDIA PS":{ar:"لماذا EXCELLENT MEDIA PS",he:"למה EXCELLENT MEDIA PS",fr:"Pourquoi EXCELLENT MEDIA PS",tr:"Neden EXCELLENT MEDIA PS"},
-    "Built on Trust, Care & Speed":{en:"We build a partnership based on trust, speed, and care.",ar:"نبني معك شراكة قائمة على الثقة، والسرعة، والاهتمام.",he:"אנחנו בונים איתכם שותפות המבוססת על אמון, מהירות ואכפתיות.",fr:"Nous bâtissons avec vous un partenariat fondé sur la confiance, la rapidité et l'attention.",tr:"Sizinle güven, hız ve özen üzerine kurulu bir ortaklık inşa ediyoruz."},
+    "Built on Trust, Care & Speed":{en:"We build a partnership based on trust, speed, and care.",ar:"نبني معك شراكة قائمة على الثقة، والسرعة، والاهتمام.",he:"אנחנו בונים איתכם שותפות המבוססת על אמון, מהירות ואכפתיות.",fr:"Un partenariat fondé sur la confiance, la rapidité et le soin.",tr:"Sizinle güven, hız ve özen üzerine kurulu bir ortaklık inşa ediyoruz."},
     "Direct personal support and dependable digital craftsmanship for lasting results.":{en:"We provide direct support and well-crafted digital solutions to ensure lasting success for your business.",ar:"نقدم لك دعماً مباشراً وحلولاً رقمية متقنة لتضمن لعملك نجاحاً يستمر.",he:"אנחנו מספקים תמיכה ישירה ופתרונות דיגיטליים מוקפדים כדי להבטיח לעסק שלכם הצלחה מתמשכת.",fr:"Nous vous offrons un accompagnement direct et des solutions numériques soignées pour assurer une réussite durable à votre entreprise.",tr:"İşinize kalıcı başarı sağlamak için doğrudan destek ve özenle hazırlanmış dijital çözümler sunuyoruz."},
     "Tailored to You":{en:"Specially Tailored to You",ar:"مُصمّم لك خصيصاً",he:"מותאם במיוחד עבורכם",fr:"Spécialement Conçu pour Vous",tr:"Size Özel Tasarlanmış"},
     "Custom solutions built specifically for your goals, brand identity, and customers.":{en:"We design our services to precisely fit your business size, your goals, and your audience.",ar:"نُصمم خدماتنا لتناسب حجم عملك، وأهدافك، وطبيعة جمهورك بدقة.",he:"אנחנו מעצבים את השירותים שלנו כך שיתאימו במדויק לגודל העסק שלכם, למטרות שלכם ולאופי הקהל שלכם.",fr:"Nous concevons nos services pour qu'ils correspondent précisément à la taille de votre entreprise, à vos objectifs et à votre public.",tr:"Hizmetlerimizi işinizin büyüklüğüne, hedeflerinize ve hedef kitlenizin yapısına tam olarak uyacak şekilde tasarlıyoruz."},
@@ -963,7 +966,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Medical":{ar:"طبّي",he:"רפואי",fr:"Médical",tr:"Tıbbi"},
 
     "Ready to Launch Your Project?":{en:"Your Business Growth Starts Here",ar:"نموّ عملك يبدأ هنا",he:"הצמיחה של העסק שלכם מתחילה כאן",fr:"La Croissance de Votre Entreprise Commence Ici",tr:"İşinizin Büyümesi Burada Başlar"},
-    "Ready to Scale Your Business Online?":{en:"Let Us Help You Expand and Reach Further",ar:"دعنا نُساعدك على التوسع والانتشار",he:"תנו לנו לעזור לכם להתרחב ולהגיע רחוק יותר",fr:"Laissez-nous vous aider à vous développer et à rayonner",tr:"Büyümeniz ve Yayılmanız İçin Size Yardımcı Olalım"},
+    "Ready to Scale Your Business Online?":{en:"Let Us Help You Expand and Reach Further",ar:"دعنا نُساعدك على التوسع والانتشار",he:"תנו לנו לעזור לכם להתרחב ולהגיע רחוק יותר",fr:"Laissez-nous vous aider à grandir et rayonner",tr:"Büyümeniz ve Yayılmanız İçin Size Yardımcı Olalım"},
     "Get your free digital strategy consultation today. We help you pick the highest-converting solution for your business.":{en:"Together we'll discuss your project's needs and map out a clear plan that guarantees you the best results.",ar:"نناقش معاً احتياجات مشروعك ونرسم لك خطة عمل واضحة تضمن لك تحقيق أفضل النتائج.",he:"יחד נדון בצרכים של הפרויקט שלכם ונשרטט תוכנית ברורה שתבטיח לכם את התוצאות הטובות ביותר.",fr:"Ensemble, nous discuterons des besoins de votre projet et établirons un plan clair qui vous garantit les meilleurs résultats.",tr:"Projenizin ihtiyaçlarını birlikte konuşacak ve size en iyi sonuçları garanti eden net bir plan çizeceğiz."},
     "No Obligation":{ar:"دون أي التزام",he:"ללא התחייבות",fr:"Sans Engagement",tr:"Yükümlülük Yok"},
     "100% Free Consultation":{ar:"استشارة مجانية 100%",he:"ייעוץ חינם 100%",fr:"Consultation 100% Gratuite",tr:"%100 Ücretsiz Danışmanlık"},
