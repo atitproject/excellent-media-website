@@ -212,6 +212,16 @@ html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
   html[dir="rtl"] .md\:items-start{align-items:flex-start !important;}
   html[dir="rtl"] .md\:text-left{text-align:right !important;}
 }
+/* Arabic: keep these lines on one line on large screens */
+@media (min-width:1024px){
+  html[lang="ar"] #contact-us p{max-width:none;white-space:nowrap;}
+  html[lang="ar"] #why-us .max-w-2xl{max-width:none;}
+  html[lang="ar"] #why-us h2{white-space:nowrap;}
+}
+
+/* Hand-drawn brush accent under section headings */
+.heading-underline{padding-bottom:14px;}
+.heading-underline::after{content:"";display:block;width:220px;max-width:70%;height:14px;margin:14px auto 0;background:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 18'><defs><linearGradient id='b' x1='0' y1='0' x2='1' y2='0'><stop offset='0' stop-color='%23ea580c'/><stop offset='1' stop-color='%23f59e0b'/></linearGradient></defs><path d='M5 11 C 70 4 120 15 160 9 C 210 2 260 13 295 7' fill='none' stroke='url(%23b)' stroke-width='7' stroke-linecap='round'/></svg>") center/100% 100% no-repeat;}
 
 /* Scroll reveal */
 .reveal-init{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1);}
@@ -273,7 +283,7 @@ html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
 <span class="material-symbols-outlined text-[15px]">design_services</span>
       Our Services
     </div>
-<h2 class="font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Full-Stack Digital Solutions</h2>
+<h2 class="heading-underline font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Full-Stack Digital Solutions</h2>
 <p class="text-slate-600 text-base mt-2">End-to-end digital services built to elevate your brand and drive measurable sales.</p>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -403,7 +413,7 @@ html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
 <span class="hidden md:inline-block text-xs font-bold uppercase tracking-wider text-[#0e4b59] px-3.5 py-1 rounded-full bg-teal-50 border border-teal-200 mb-3">
       Why EXCELLENT MEDIA PS
     </span>
-<h2 class="font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Built on Trust, Care &amp; Speed</h2>
+<h2 class="heading-underline font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Built on Trust, Care &amp; Speed</h2>
 <p class="text-slate-600 text-sm md:text-base mt-2">
       Direct personal support and dependable digital craftsmanship for lasting results.
     </p>
@@ -481,7 +491,7 @@ html[dir="rtl"] footer ul a .material-symbols-outlined{transform:scaleX(-1);}
 <div class="w-full max-w-[1440px] mx-auto px-6 md:px-12">
 <div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
 <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#ea580c] px-3.5 py-1 rounded-full bg-orange-50 border border-orange-200 mb-3"><span class="material-symbols-outlined text-[15px]">work</span>Recent Work</span>
-<h2 class="font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Projects Built for Growth</h2>
+<h2 class="heading-underline font-headline text-3xl md:text-4xl text-slate-900 font-extrabold tracking-tight">Projects Built for Growth</h2>
 <p class="text-slate-600 text-sm md:text-base mt-2">Explore live websites, e-commerce stores, and digital menus crafted for clients.</p>
 </div>
 <!-- Filter tabs -->
@@ -887,7 +897,7 @@ document.addEventListener('DOMContentLoaded', () => {
     "Mobile":{ar:"جوال",he:"מובייל",fr:"Mobile",tr:"Mobil"},
     "iOS & Android Apps":{ar:"تطبيقات iOS و Android",he:"אפליקציות iOS ו-Android",fr:"Applications iOS & Android",tr:"iOS ve Android Uygulamaları"},
     "Intuitive, high-performance mobile apps for orders, loyalty, and customer retention.":{ar:"تطبيقات جوال سريعة وسلسة للآيفون والأندرويد. تُسهل على عملائك الطلب وتجعلهم يعودون للشراء منك دائماً.",he:"אפליקציות מובייל אינטואיטיביות ובעלות ביצועים גבוהים להזמנות, נאמנות ושימור לקוחות.",fr:"Des applications mobiles intuitives et performantes pour les commandes, la fidélité et la rétention.",tr:"Siparişler, sadakat ve müşteri tutma için sezgisel, yüksek performanslı mobil uygulamalar."},
-    "Native Performance":{ar:"أداء أصلي",he:"ביצועים נייטיב",fr:"Performance Native",tr:"Yerel Performans"},
+    "Native Performance":{ar:"أداء سريع",he:"ביצועים נייטיב",fr:"Performance Native",tr:"Yerel Performans"},
     "Social":{ar:"سوشيال",he:"סושיאל",fr:"Social",tr:"Sosyal"},
     "Social Media Management":{ar:"إدارة وسائل التواصل",he:"ניהול מדיה חברתית",fr:"Gestion des Réseaux Sociaux",tr:"Sosyal Medya Yönetimi"},
     "Creative designs, viral reels, and strategic daily management across Meta & TikTok.":{ar:"تصاميم مميزة وفيديوهات جذابة لحساباتك على فيسبوك، إنستغرام، وتيك توك. نساعدك على زيادة المتابعين والتفاعل اليومي.",he:"עיצובים יצירתיים, רילסים ויראליים וניהול יומי אסטרטגי ב-Meta ו-TikTok.",fr:"Designs créatifs, reels viraux et gestion quotidienne stratégique sur Meta & TikTok.",tr:"Meta ve TikTok'ta yaratıcı tasarımlar, viral reels ve stratejik günlük yönetim."},
