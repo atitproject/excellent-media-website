@@ -37,4 +37,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://atitproject.github.io/excellent-media-website/sitemap.xml
+Sitemap: https://excellentmedia.ps/sitemap.xml
