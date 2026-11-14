@@ -1,0 +1,17 @@
+{
+  // Static-assets Worker for the Excellent Media website.
+  // Mirrors the existing production deployment settings and adds a
+  // `previews` block so non-production branch preview builds
+  // (`npx wrangler preview`) succeed. Custom domains (excellentmedia.ps,
+  // www.excellentmedia.ps) are managed in the Cloudflare dashboard and
+  // are intentionally not declared here.
+  "name": "excellent-media-website",
+  "compatibility_date": "2026-11-10",
+  "assets": {
+    "directory": "./"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "previews": {}
+}
