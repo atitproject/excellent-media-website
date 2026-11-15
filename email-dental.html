@@ -15,8 +15,6 @@
   @media only screen and (max-width:600px){
     .container{width:100%!important;border-radius:0!important;}
     .px{padding-left:22px!important;padding-right:22px!important;}
-    .btn-wrap{display:block!important;width:100%!important;max-width:100%!important;}
-    .btn-spacer{display:block!important;width:100%!important;height:12px!important;line-height:12px!important;font-size:12px!important;}
     .h1{font-size:24px!important;}
   }
 </style>
@@ -28,7 +26,7 @@
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#eef2f5;">
 <tr><td align="center" style="padding:24px 12px;">
 
-  <table role="presentation" class="container" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(8,47,56,0.12);">
+  <table role="presentation" class="container" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:600px;background-color:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(8,47,56,0.12);">
 
     <!-- Logo band (white) -->
     <tr><td align="center" style="background-color:#ffffff;padding:26px 24px 10px 24px;">
@@ -77,28 +75,21 @@
       </table>
     </td></tr>
 
-    <!-- Buttons -->
-    <tr><td style="padding:22px 36px 10px 36px;" class="px" align="center">
-      <div style="font-size:0;text-align:center;">
-        <!--[if mso]><table role="presentation" cellpadding="0" cellspacing="0" width="100%"><tr><td width="49%" align="center"><![endif]-->
-        <div class="btn-wrap" style="display:inline-block;width:48%;max-width:250px;vertical-align:top;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:999px;background-color:#25d366;">
-            <tr><td align="center" style="border-radius:999px;">
-              <a href="https://wa.me/970599268700?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D8%B1%D8%B6%20%D8%A5%D9%86%D8%B4%D8%A7%D8%A1%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D8%B9%D9%8A%D8%A7%D8%AF%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D9%86%D8%A7%D9%86%20%28399%24%29.%20%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D9%84%D9%80%20EXCELLENT%20MEDIA." target="_blank" style="display:block;padding:15px 14px;font-size:15px;font-weight:bold;color:#ffffff;border-radius:999px;">💬 تواصل عبر واتساب</a>
-            </td></tr>
-          </table>
-        </div>
-        <!--[if mso]></td><td width="2%">&nbsp;</td><td width="49%" align="center"><![endif]-->
-        <div class="btn-spacer" style="display:inline-block;width:3%;height:1px;font-size:1px;line-height:1px;vertical-align:top;">&nbsp;</div>
-        <div class="btn-wrap" style="display:inline-block;width:48%;max-width:250px;vertical-align:top;">
-          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:999px;background-color:#ea580c;">
-            <tr><td align="center" style="border-radius:999px;">
-              <a href="https://excellentmedia.ps/#portfolio" target="_blank" style="display:block;padding:15px 14px;font-size:15px;font-weight:bold;color:#ffffff;border-radius:999px;">🎨 مشاهدة أعمالنا</a>
-            </td></tr>
-          </table>
-        </div>
-        <!--[if mso]></td></tr></table><![endif]-->
-      </div>
+    <!-- Buttons (full-width stacked — robust in Gmail even with styles stripped) -->
+    <tr><td style="padding:22px 36px 6px 36px;" class="px">
+      <!-- WhatsApp -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:999px;background-color:#25d366;">
+        <tr><td align="center" style="border-radius:999px;">
+          <a href="https://wa.me/970599268700?text=%D9%85%D8%B1%D8%AD%D8%A8%D8%A7%D9%8B%D8%8C%20%D8%A3%D8%B1%D8%BA%D8%A8%20%D8%A8%D8%A7%D9%84%D8%A7%D8%B3%D8%AA%D9%81%D8%B3%D8%A7%D8%B1%20%D8%B9%D9%86%20%D8%B9%D8%B1%D8%B6%20%D8%A5%D9%86%D8%B4%D8%A7%D8%A1%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D8%B9%D9%8A%D8%A7%D8%AF%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D9%86%D8%A7%D9%86%20%28399%24%29.%20%D8%B4%D9%83%D8%B1%D8%A7%D9%8B%20%D9%84%D9%80%20EXCELLENT%20MEDIA." target="_blank" style="display:block;padding:16px 18px;font-size:16px;font-weight:bold;color:#ffffff;border-radius:999px;">💬 تواصل عبر واتساب</a>
+        </td></tr>
+      </table>
+      <div style="height:12px;line-height:12px;font-size:12px;">&nbsp;</div>
+      <!-- Portfolio -->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-radius:999px;background-color:#ea580c;">
+        <tr><td align="center" style="border-radius:999px;">
+          <a href="https://excellentmedia.ps/#portfolio" target="_blank" style="display:block;padding:16px 18px;font-size:16px;font-weight:bold;color:#ffffff;border-radius:999px;">🎨 مشاهدة أعمالنا</a>
+        </td></tr>
+      </table>
     </td></tr>
 
     <!-- Sign-off -->
