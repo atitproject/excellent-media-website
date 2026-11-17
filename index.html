@@ -1,11 +1,17 @@
-<!DOCTYPE html><html class="scroll-smooth" lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type">
+<!DOCTYPE html><html class="scroll-smooth" lang="ar" dir="rtl" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type">
 <title>EXCELLENT MEDIA PS | Web, Apps &amp; Digital Marketing in Palestine</title>
 <meta name="description" content="Palestine's modern digital partner for custom websites, e-commerce, iOS &amp; Android apps, digital marketing, and AI solutions. Serving Qalqilya &amp; Ramallah.">
 <meta name="keywords" content="web design Palestine, web development, e-commerce, online store, mobile apps, iOS, Android, digital marketing, social media management, Google Ads, Meta Ads, AI solutions, Qalqilya, Ramallah, EXCELLENT MEDIA PS">
 <meta name="author" content="EXCELLENT MEDIA PS">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="theme-color" content="#082f38">
-<link rel="canonical" href="https://excellentmedia.ps/">
+<link rel="canonical" id="canonical-link" href="https://excellentmedia.ps/ar">
+<link rel="alternate" hreflang="ar" href="https://excellentmedia.ps/ar">
+<link rel="alternate" hreflang="en" href="https://excellentmedia.ps/en">
+<link rel="alternate" hreflang="he" href="https://excellentmedia.ps/he">
+<link rel="alternate" hreflang="fr" href="https://excellentmedia.ps/fr">
+<link rel="alternate" hreflang="tr" href="https://excellentmedia.ps/tr">
+<link rel="alternate" hreflang="x-default" href="https://excellentmedia.ps/ar">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
 <!-- Open Graph -->
@@ -1095,8 +1101,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   while(walker.nextNode()){ var n=walker.currentNode; nodes.push({node:n, en:n.nodeValue, key:n.nodeValue.trim()}); }
 
-  function applyLang(lang){
-    if(LANGS.indexOf(lang)<0) lang='en';
+  function applyLang(lang, pushUrl){
+    if(LANGS.indexOf(lang)<0) lang='ar';
     var rtl=(lang==='ar'||lang==='he');
     document.documentElement.setAttribute('lang',lang);
     document.documentElement.setAttribute('dir', rtl?'rtl':'ltr');
@@ -1110,6 +1116,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.lang-option').forEach(function(b){ b.classList.toggle('active-lang', b.getAttribute('data-lang')===lang); });
     document.querySelectorAll('.lang-option-m').forEach(function(b){ b.classList.toggle('active-lang', b.getAttribute('data-lang')===lang); });
     try{ localStorage.setItem('siteLang',lang); }catch(e){}
+    var canon=document.getElementById('canonical-link'); if(canon) canon.setAttribute('href','https://excellentmedia.ps/'+lang);
+    if(pushUrl){ try{ history.pushState({lang:lang}, '', '/'+lang); }catch(e){} }
   }
 
   // Dropdown behaviour
@@ -1118,12 +1126,16 @@ document.addEventListener('DOMContentLoaded', () => {
     lb.addEventListener('click',function(e){ e.stopPropagation(); lm.classList.toggle('hidden'); });
     document.addEventListener('click',function(e){ if(!lm.contains(e.target)&&!lb.contains(e.target)) lm.classList.add('hidden'); });
   }
-  document.querySelectorAll('.lang-option').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang')); if(lm) lm.classList.add('hidden'); }); });
-  document.querySelectorAll('.lang-option-m').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang')); }); });
+  document.querySelectorAll('.lang-option').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang'), true); if(lm) lm.classList.add('hidden'); }); });
+  document.querySelectorAll('.lang-option-m').forEach(function(b){ b.addEventListener('click',function(){ applyLang(b.getAttribute('data-lang'), true); }); });
 
-  // Init: saved choice, else English
-  var saved='en'; try{ saved=localStorage.getItem('siteLang')||'en'; }catch(e){}
-  applyLang(saved);
+  // Init: language from URL path (/ar, /en, ...), else Arabic (default)
+  var LANG_RE=/^\/(en|ar|he|fr|tr)(?:\/|$)/;
+  function langFromPath(){ var m=location.pathname.match(LANG_RE); return m?m[1]:null; }
+  var initial=langFromPath()||'ar';
+  try{ history.replaceState({lang:initial}, '', '/'+initial); }catch(e){}
+  applyLang(initial, false);
+  window.addEventListener('popstate', function(){ applyLang(langFromPath()||'ar', false); });
 })();
 </script>
 </body></html>
