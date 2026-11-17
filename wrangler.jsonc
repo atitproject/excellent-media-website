@@ -8,7 +8,10 @@
   "name": "excellent-media-website",
   "compatibility_date": "2026-11-10",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    // Serve index.html for language-path routes like /ar, /en, /he, /fr, /tr
+    // (client-side i18n reads the path). Real asset files are still served directly.
+    "not_found_handling": "single-page-application"
   },
   "observability": {
     "enabled": true
